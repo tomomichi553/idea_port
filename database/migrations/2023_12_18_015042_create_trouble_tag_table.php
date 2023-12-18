@@ -6,16 +6,13 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    
     public function up(): void
     {
         Schema::create('trouble_tag', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('trouble_id');
-            $table->foreignId('trouble_tag_id');
-            $table->timestamps();
+            $table->foreignId('trouble_id')->constrained('troubles');
+            $table->foreignId('trouble_tag_id')->constrained('trouble_tags');
+            $table->primary(['trouble_id','trouble_tag_id']);
         });
     }
 

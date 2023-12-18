@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('idea_comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreigmId('idea_id');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('idea_id')->constrained();
             $table->string('comment');
             $table->timestamps();
             $table->softDeletes();
