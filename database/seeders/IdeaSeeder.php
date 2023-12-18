@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use DateTime;
+use App\Models\Idea;
 
 class IdeaSeeder extends Seeder
 {
@@ -14,15 +15,7 @@ class IdeaSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('ideas')->insert([
-                'user_id' => '1',
-                'idea_title'=> 'これがアイデアのタイトルです',
-                'idea_background'=> 'ここからがアイデアの背景です',
-                'idea_goal'=>'ここからがアイデアの目標です',
-                'idea_detail'=> 'ここからがアイデアの詳細です',
-                'created_at' => new DateTime(),
-                'updated_at' => new DateTime(),
-         ]);
+        Idea::factory(5)->create();
          /*DB::table('ideas')->insert([
                 //'user_id' => '1',
                 'idea_title'=> 'これがアイデアのタイトル2です',

@@ -11,11 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('idea_comments', function (Blueprint $table) {
+        Schema::create('ideas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('idea_id')->constrained();
-            $table->string('comment');
+            $table->foreignId('tag_id')->constrained();
+            $table->string('img_url')->nullable();
+            $table->string('idea_title');
+            $table->string('idea_background')->nullable();
+            $table->string('idea_goal');
+            $table->string('idea_detail')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -26,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('idea_comments');
+        Schema::dropIfExists('ideas');
     }
 };

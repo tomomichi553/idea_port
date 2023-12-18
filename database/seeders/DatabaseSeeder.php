@@ -14,7 +14,9 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call(UserSeeder::class);
+        $this->call(TagSeeder::class);
         $this->call(IdeaSeeder::class);
+        $this->call(TroubleSeeder::class);
         
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
