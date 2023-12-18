@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('troubles', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->string('body');
-            $table->timestamps();
-            $table->softDeletes();
-            $table->string('img_url');
+        Schema::create('idea_tag', function (Blueprint $table) {
+            $table->foreignId('idea_id')->constrained('ideas');
+            $table->foreignId('idea_tags_id')->constrained('idea_tags');
+            $table->primary(['idea_id','idea_tags_id']);
         });
     }
 
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('troubles');
+        Schema::dropIfExists('idea_tag');
     }
 };
