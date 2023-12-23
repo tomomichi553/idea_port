@@ -38,6 +38,25 @@ class IdeaController extends Controller
         return redirect('/ideas/'.$idea->id);
     }
     
+    public function ideaEdit(Idea $idea,Tag $tag)
+    {
+        return view('ideas/edit')->with(['idea'=>$idea,'tags'=>$tag->get()]);
+    }
+    
+    public function ideaUpdate(IdeaRequest $request,Idea $idea)
+    {
+        $input = $request['idea'];
+        $idea->tag_id = $request['tag'];
+        $idea->fill($input)->save();
+        return redirect('/ideas/'.$idea->id);
+    }
+    
+    public function ideaDelete(Idea $idea)
+    {
+        $idea->delete();
+        return redirect('/');
+    }
+    
     public function troubleCreate(Tag $tag)
     {
         return view('troubles/create')->with(['tags'=>$tag->get()]);
@@ -56,5 +75,24 @@ class IdeaController extends Controller
         //dd($trouble);
         $trouble->fill($input)->save();
         return redirect('/troubles/'.$trouble->id);
+    }
+    
+    public function troubleEdit(Trouble $trouble,Tag $tag)
+    {
+        return view('troubles/edit')->with(['trouble'=>$trouble,'tags'=>$tag->get()]); 
+    }
+    
+    public function troubleUpdate(TroubleRequest $request,Trouble $trouble)
+    {
+        $input=$request['trouble'];
+        $trouble->tag_id=$request['tag'];
+        $trouble->fill($input)->save();
+        return redirect('/troubles/'.$trouble->id);
+    }
+    
+    public function troubleDelete(Trouble $trouble)
+    {
+        $trouble->delete();
+        return redirect('/');
     }
 }
