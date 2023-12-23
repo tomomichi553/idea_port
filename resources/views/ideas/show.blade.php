@@ -11,17 +11,18 @@
     
         <div class='ideas'>
             
-                <div class='idea'>
-                    <br>
-                    <h2 class='title'>タイトル：{{$idea->idea_title}}</h2>
-                    <p class='background'>背景：{{$idea->idea_background}}</p>
-                    <p class='goal'>目標：{{$idea->idea_goal}}</p>
-                    <p class='detail'>詳細：{{$idea->idea_detail}}</p>
-                    <p class='user'>ユーザー名：{{$idea->user->name}}</p>
-                    <p class='tag'>タグ:{{$idea->tag->name}}</p>
-                    
-    
-                </div>
+            <div class='idea'>
+                <br>
+                <h2 class='title'>タイトル：{{$idea->idea_title}}</h2>
+                <p class='background'>背景：{{$idea->idea_background}}</p>
+                <p class='goal'>目標：{{$idea->idea_goal}}</p>
+                <p class='detail'>詳細：{{$idea->idea_detail}}</p>
+                <p class='user'>ユーザー名：{{$idea->user->name}}</p>
+                <p class='tag'>タグ:{{$idea->tag->name}}</p>
+            </div>
+            <div class="footer">
+                <a href="/">戻る</a>
+            </div>
            
         </div>
     

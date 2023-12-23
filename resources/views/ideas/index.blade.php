@@ -8,6 +8,8 @@
     </x-slot>
 
      <h1>Idea_port</h1>
+     <a href="/ideas/create">アイデア作成</a>
+     <a href="/troubles/create">悩み投稿</a>
     
         <div class='ideas'>
             <h2>いいねが多いアイデア</h2>
