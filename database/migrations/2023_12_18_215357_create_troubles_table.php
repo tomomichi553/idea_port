@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('tag_id')->constrained();
             $table->string('body');
-            $table->string('img_url');
+            $table->string('img_url')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

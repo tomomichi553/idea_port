@@ -10,6 +10,14 @@ class Idea extends Model
 {
     use HasFactory;
     
+    protected $fillable = [
+        'idea_title',
+        'idea_background',
+        'idea_goal',
+        'idea_detail',
+        //'tag_id',
+    ];
+    
     public function user():BelongsTo
     {
         return $this->belongsTo(User::class);

@@ -9,19 +9,32 @@
 
      <h1>Idea_port</h1>
     
-        <div class='ideas'>
-            
-                <div class='idea'>
-                    <br>
-                    <h2 class='title'>タイトル：{{$idea->idea_title}}</h2>
-                    <p class='background'>背景：{{$idea->idea_background}}</p>
-                    <p class='goal'>目標：{{$idea->idea_goal}}</p>
-                    <p class='detail'>詳細：{{$idea->idea_detail}}</p>
-                    <p class='user'>ユーザー名：{{$idea->user->name}}</p>
-                    <p class='tag'>タグ:{{$idea->tag->name}}</p>
-                    
-    
+        <div class='troubles'>
+            <h2>悩みの投稿</h2>
+            <div class='idea'>
+                <form action="/troubles" method="POST">
+                    @csrf
+                    <div class='body'>
+                        <h2>悩み</h2>
+                        <input type="textarea" name="trouble[body]" placeholder="悩み">
+                        <p class="body__error" style="color:red">{{ $errors->first('trouble.body') }}</p>
+                    </div>
+                    <div class='tag'>
+                        <h2>タグ</h2>
+                        <select name="tag", placeholder="タグ"/>
+                            @foreach ($tags as $tag)
+                                <option value = "{{$tag->id}}">{{$tag->name}}</option>
+                            @endforeach
+                        </select>
+                        <p class="tag__error" style="color:red">{{ $errors->first('tag') }}</p>
+                    </div>
+                    <input type="submit" value="投稿する"/>
+                </form>
+                <div class="footer">
+                    <a href="/">戻る</a>
                 </div>
+
+            </div>
            
         </div>
     
