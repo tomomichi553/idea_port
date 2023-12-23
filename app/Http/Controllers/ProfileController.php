@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Idea;
+use App\Models\Trouble;
+use App\Models\Tag;
+
 
 class ProfileController extends Controller
 {
@@ -57,4 +61,14 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+    
+    public function post(Idea $idea,Trouble $trouble)
+    {
+         $userId=Auth::id();
+         $ideas=$idea->where('user_id',$userId)->get();
+         $troubles=$trouble->where('user_id',$userId)->get();
+         return view('profile/index')->with(['ideas' => $ideas ,'troubles'=>$troubles]);
+    }
+    
+    
 }

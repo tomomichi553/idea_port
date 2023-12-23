@@ -22,7 +22,7 @@ class IdeaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'idea.idea_title'=>'required|sreing|max:100',
+            'idea.idea_title'=>'required|string|max:100',
             'idea.idea_background'=>'required|string|max:500',
             'idea.idea_goal'=>'required|string|max:500',
             'idea.idea_detail'=>'required|string|max:500',
