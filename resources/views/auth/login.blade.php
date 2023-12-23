@@ -2,7 +2,7 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
     
-    //追記しました
+    <!--追記しました-->
     @if (Route::has('login'))
         <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
             @auth
@@ -16,7 +16,7 @@
             @endauth
         </div>
     @endif
-    //ここまで
+    <!--ここまで-->
     
 
     <form method="POST" action="{{ route('login') }}">
