@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/',[IdeaController::class,'ideaIndex']);
     
     Route::get('/ideas/create',[IdeaController::class,'ideaCreate']);
+    Route::get('ideas/search',[IdeaController::class,'ideaSearch']);
     Route::post('/ideas/',[IdeaController::class,'ideaStore']);
     Route::get('/ideas/{idea}/edit',[ideaController::class,'ideaEdit']);
     Route::put('/ideas/{idea}',[IdeaController::class,'ideaUpdate']);
@@ -33,6 +34,7 @@ Route::middleware('auth')->group(function () {
     
     Route::post('/troubles/',[IdeaController::class,'troubleStore']);
     Route::get('/troubles/create',[IdeaController::class,'troubleCreate']);
+    Route::get('troubles/search',[IdeaController::class,'troubleSearch']);
     Route::get('/troubles/{trouble}/edit',[IdeaController::class,'troubleEdit']);
     Route::put('/troubles/{trouble}',[IdeaController::class,'troubleUpdate']);
     Route::get('/troubles/{trouble}',[IdeaController::class,'troubleShow']);

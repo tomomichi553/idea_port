@@ -13,6 +13,7 @@
     
         <div class='ideas'>
             <h2>いいねが多いアイデア</h2>
+            <a href="/ideas/search">もっと見る</a>
             @foreach ($ideas as $idea)
                 <div class='idea'>
                     <br>
@@ -25,8 +26,11 @@
                 </div>
             @endforeach
         </div>
+        
+        
         <div class='troubles'>
             <h2>共感の多い悩み</h2>
+            <a href="/troubles/search">もっと見る</a>
             @foreach ($troubles as $trouble)
                 <div class='idea'>
                     <br>
@@ -38,6 +42,7 @@
                 </div>
             @endforeach
         </div>
+        
         
     
 </x-app-layout>

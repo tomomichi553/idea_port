@@ -31,6 +31,7 @@
         </div>
         <div class='troubles'>
             <h2>投稿した悩み</h2>
+            
             @foreach ($troubles as $trouble)
                 <div class='idea'>
                     <br>
