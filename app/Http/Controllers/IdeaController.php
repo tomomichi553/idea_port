@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\IdeaRequest;
 use App\Http\Requests\TroubleRequest;
+use App\Http\Controllers\Post;
 use App\Models\Idea;
 use App\Models\Trouble;
 use App\Models\Tag;
@@ -28,6 +29,22 @@ class IdeaController extends Controller
         return view('ideas/create')->with(['tags'=>$tag->get()]);
     }
     
+    public function ideaSearch(Idea $idea,Request $request)
+    {
+        $keyword=$request->input('keyword');
+        $query=Idea::query();
+        if (isset($keyword) && !empty($keyword))
+        {
+            $query->where('idea_title','LIKE',"%{$keyword}%")
+                ->orWhereHas('tag',function ($tag) use ($keyword)
+                {
+                    $tag->where('name','LIKE',"%{$keyword}%");
+                });
+        }
+        $idea = $query->paginate(5);
+        return view('/ideas/search')->with(['ideas'=>$idea,'keyword'=>$keyword]);
+    }
+    
     public function ideaStore(IdeaRequest $request,Idea $idea)
     {
         $input = $request['idea'];
@@ -40,6 +57,7 @@ class IdeaController extends Controller
     
     public function ideaEdit(Idea $idea,Tag $tag)
     {
+        $this->authorize('update',$idea);
         return view('ideas/edit')->with(['idea'=>$idea,'tags'=>$tag->get()]);
     }
     
@@ -53,6 +71,7 @@ class IdeaController extends Controller
     
     public function ideaDelete(Idea $idea)
     {
+        $this->authorize('delete',$idea);
         $idea->delete();
         return redirect('/');
     }
@@ -60,6 +79,20 @@ class IdeaController extends Controller
     public function troubleCreate(Tag $tag)
     {
         return view('troubles/create')->with(['tags'=>$tag->get()]);
+    }
+    
+    public function troubleSearch(Trouble $trouble,Request $request){
+        $keyword=$request->input('keyword');
+        $query=Trouble::query();
+        if (isset($keyword) && !empty($keyword))
+        {
+            $query->where('body','LIKE',"%{$keyword}%")
+            ->orWhereHas('tag',function ($tag) use ($keyword){
+                $tag->where('name','LIKE',"%{$keyword}%");
+            });
+        }
+        $Trouble = $query->paginate(5);
+        return view('/troubles/search')->with(['troubles'=>$Trouble,'keyword'=>$keyword]);
     }
     
     public function troubleShow(Trouble $trouble)
@@ -79,6 +112,7 @@ class IdeaController extends Controller
     
     public function troubleEdit(Trouble $trouble,Tag $tag)
     {
+        $this->authorize('update',$trouble);
         return view('troubles/edit')->with(['trouble'=>$trouble,'tags'=>$tag->get()]); 
     }
     
@@ -92,7 +126,10 @@ class IdeaController extends Controller
     
     public function troubleDelete(Trouble $trouble)
     {
+        $this->authorize('update',$trouble);
         $trouble->delete();
         return redirect('/');
     }
+    
+    
 }
