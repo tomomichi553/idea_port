@@ -10,6 +10,8 @@ use App\Http\Controllers\Post;
 use App\Models\Idea;
 use App\Models\Trouble;
 use App\Models\Tag;
+use App\Models\IdeaComments;
+use App\Models\TroubleComments;
 
 class IdeaController extends Controller
 {
@@ -18,9 +20,9 @@ class IdeaController extends Controller
         return view('ideas/index')->with(['ideas' => $idea -> get(),'troubles'=>$trouble->get()]);
     }
     
-    public function ideaShow(Idea $idea)
+    public function ideaShow(Idea $idea,IdeaComments $comment)
     {
-        return view('ideas/show')->with(['idea'=>$idea]);
+        return view('ideas/show')->with(['idea'=>$idea, 'comments'=>$comment->get()]);
     }
     
     public function ideaCreate(Tag $tag)
@@ -53,6 +55,14 @@ class IdeaController extends Controller
         $idea->user_id = Auth::id();
         $idea->fill($input)->save();
         return redirect('/ideas/'.$idea->id);
+    }
+    
+    public function ideaComment(Request $request,IdeaComments $comment)
+    {
+        $input = $request['comment'];
+        $comment->user_id=Auth::id();
+        $comment->fill($input)->save();
+        return redirect('/ideas/'.$comment->idea_id);
     }
     
     public function ideaEdit(Idea $idea,Tag $tag)
@@ -95,9 +105,9 @@ class IdeaController extends Controller
         return view('/troubles/search')->with(['troubles'=>$Trouble,'keyword'=>$keyword]);
     }
     
-    public function troubleShow(Trouble $trouble)
+    public function troubleShow(Trouble $trouble,TroubleComments $comment)
     {
-        return view('troubles/show')->with(['trouble'=>$trouble]);
+        return view('troubles/show')->with(['trouble'=>$trouble,'comments'=>$comment->get()]);
     }
     
     public function troubleStore(TroubleRequest $request,Trouble $trouble)
@@ -108,6 +118,14 @@ class IdeaController extends Controller
         //dd($trouble);
         $trouble->fill($input)->save();
         return redirect('/troubles/'.$trouble->id);
+    }
+    
+    public function troubleComment(Request $request,TroubleComments $comment)
+    {
+        $input = $request['comment'];
+        $comment->user_id=Auth::id();
+        $comment->fill($input)->save();
+        return redirect('/troubles/'.$comment->trouble_id);
     }
     
     public function troubleEdit(Trouble $trouble,Tag $tag)

@@ -20,6 +20,21 @@
                 <p class='user'>ユーザー名：{{$idea->user->name}}</p>
                 <p class='tag'>タグ:{{$idea->tag->name}}</p>
             </div>
+            <div class='comment'>
+                <h2>コメント欄</h2>
+                @foreach ($comments as $comment)
+                    <p class='body'>投稿日時:{{$comment->created_at}} コメント:{{$comment->comment}}</p>
+                    <p class='user'>投稿者:{{$comment->user->name}}</p>
+                @endforeach
+            </div>
+            <div class='comment_post'>
+                <form action="/ideas/comments" method="POST">
+                    @csrf
+                    <input type='hidden' name="comment[idea_id]" value="{{$idea->id}}">
+                    <input type="text" name="comment[comment]"> 
+                    <input type="submit" value="投稿する"/>
+                </form>
+            </div>
             <div class="footer">
                 <a href="/">戻る</a>
             </div>

@@ -27,12 +27,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/ideas/create',[IdeaController::class,'ideaCreate']);
     Route::get('ideas/search',[IdeaController::class,'ideaSearch']);
     Route::post('/ideas/',[IdeaController::class,'ideaStore']);
+    Route::post('/ideas/comments',[IdeaController::class,'ideaComment']);
     Route::get('/ideas/{idea}/edit',[ideaController::class,'ideaEdit']);
     Route::put('/ideas/{idea}',[IdeaController::class,'ideaUpdate']);
     Route::get('/ideas/{idea}',[IdeaController::class,'ideaShow']);
     Route::delete('/ideas/{idea}',[IdeaController::class,'ideaDelete']);
     
     Route::post('/troubles/',[IdeaController::class,'troubleStore']);
+    Route::post('/troubles/comments',[IdeaController::class,'troubleComment']);
     Route::get('/troubles/create',[IdeaController::class,'troubleCreate']);
     Route::get('troubles/search',[IdeaController::class,'troubleSearch']);
     Route::get('/troubles/{trouble}/edit',[IdeaController::class,'troubleEdit']);
