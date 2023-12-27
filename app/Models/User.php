@@ -53,4 +53,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Idea::class);
     }
+    
+    public function idea_comments():HasMany
+    {
+        return $this->hasMany(IdeaComments::class);
+    }
+    
+    public function trouble_comments():HasMany
+    {
+        return $this->hasMany(TroubleComments::class);
+    }
 }
