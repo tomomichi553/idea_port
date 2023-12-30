@@ -22,7 +22,8 @@ class IdeaController extends Controller
     
     public function ideaShow(Idea $idea,IdeaComments $comment)
     {
-        return view('ideas/show')->with(['idea'=>$idea, 'comments'=>$comment->get()]);
+        $fillterdComments=$comment->where('idea_id',$idea->id)->get();
+        return view('ideas/show')->with(['idea'=>$idea, 'comments'=> $fillterdComments]);
     }
     
     public function ideaCreate(Tag $tag)
@@ -86,68 +87,12 @@ class IdeaController extends Controller
         return redirect('/');
     }
     
-    public function troubleCreate(Tag $tag)
+    public function ideaCommentDelete(IdeaComments $comment)
     {
-        return view('troubles/create')->with(['tags'=>$tag->get()]);
+        $id=$comment->idea_id;
+        $this->authorize('delete',$comment);
+        $comment->delete();
+        return redirect('/ideas/'.$id);
     }
-    
-    public function troubleSearch(Trouble $trouble,Request $request){
-        $keyword=$request->input('keyword');
-        $query=Trouble::query();
-        if (isset($keyword) && !empty($keyword))
-        {
-            $query->where('body','LIKE',"%{$keyword}%")
-            ->orWhereHas('tag',function ($tag) use ($keyword){
-                $tag->where('name','LIKE',"%{$keyword}%");
-            });
-        }
-        $Trouble = $query->paginate(5);
-        return view('/troubles/search')->with(['troubles'=>$Trouble,'keyword'=>$keyword]);
-    }
-    
-    public function troubleShow(Trouble $trouble,TroubleComments $comment)
-    {
-        return view('troubles/show')->with(['trouble'=>$trouble,'comments'=>$comment->get()]);
-    }
-    
-    public function troubleStore(TroubleRequest $request,Trouble $trouble)
-    {
-        $input = $request['trouble'];
-        $trouble->tag_id = $request['tag'];
-        $trouble->user_id = Auth::id();
-        //dd($trouble);
-        $trouble->fill($input)->save();
-        return redirect('/troubles/'.$trouble->id);
-    }
-    
-    public function troubleComment(Request $request,TroubleComments $comment)
-    {
-        $input = $request['comment'];
-        $comment->user_id=Auth::id();
-        $comment->fill($input)->save();
-        return redirect('/troubles/'.$comment->trouble_id);
-    }
-    
-    public function troubleEdit(Trouble $trouble,Tag $tag)
-    {
-        $this->authorize('update',$trouble);
-        return view('troubles/edit')->with(['trouble'=>$trouble,'tags'=>$tag->get()]); 
-    }
-    
-    public function troubleUpdate(TroubleRequest $request,Trouble $trouble)
-    {
-        $input=$request['trouble'];
-        $trouble->tag_id=$request['tag'];
-        $trouble->fill($input)->save();
-        return redirect('/troubles/'.$trouble->id);
-    }
-    
-    public function troubleDelete(Trouble $trouble)
-    {
-        $this->authorize('update',$trouble);
-        $trouble->delete();
-        return redirect('/');
-    }
-    
     
 }

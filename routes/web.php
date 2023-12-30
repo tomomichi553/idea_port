@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\IdeaController;
+use App\Http\Controllers\TroubleController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -32,15 +33,16 @@ Route::middleware('auth')->group(function () {
     Route::put('/ideas/{idea}',[IdeaController::class,'ideaUpdate']);
     Route::get('/ideas/{idea}',[IdeaController::class,'ideaShow']);
     Route::delete('/ideas/{idea}',[IdeaController::class,'ideaDelete']);
+    Route::delete('/ideas/comments/{comment}',[IdeaController::class,'ideaCommentDelete']);
     
-    Route::post('/troubles/',[IdeaController::class,'troubleStore']);
-    Route::post('/troubles/comments',[IdeaController::class,'troubleComment']);
-    Route::get('/troubles/create',[IdeaController::class,'troubleCreate']);
-    Route::get('troubles/search',[IdeaController::class,'troubleSearch']);
-    Route::get('/troubles/{trouble}/edit',[IdeaController::class,'troubleEdit']);
-    Route::put('/troubles/{trouble}',[IdeaController::class,'troubleUpdate']);
-    Route::get('/troubles/{trouble}',[IdeaController::class,'troubleShow']);
-    Route::delete('/troubles/{trouble}',[IdeaController::class,'troubleDelete']);
-    
+    Route::post('/troubles/',[TroubleController::class,'troubleStore']);
+    Route::post('/troubles/comments',[TroubleController::class,'troubleComment']);
+    Route::get('/troubles/create',[TroubleController::class,'troubleCreate']);
+    Route::get('troubles/search',[TroubleController::class,'troubleSearch']);
+    Route::get('/troubles/{trouble}/edit',[TroubleController::class,'troubleEdit']);
+    Route::put('/troubles/{trouble}',[TroubleController::class,'troubleUpdate']);
+    Route::get('/troubles/{trouble}',[TroubleController::class,'troubleShow']);
+    Route::delete('/troubles/{trouble}',[TroubleController::class,'troubleDelete']);
+    Route::delete('/troubles/comments/{comment}',[TroubleController::class,'troubleCommentDelete']);
     
 });
