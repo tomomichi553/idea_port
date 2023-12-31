@@ -12,6 +12,7 @@ use App\Models\Trouble;
 use App\Models\Tag;
 use App\Models\IdeaComments;
 use App\Models\TroubleComments;
+use Cloudinary;
 
 class IdeaController extends Controller
 {
@@ -32,9 +33,11 @@ class IdeaController extends Controller
         return view('ideas/create')->with(['tags'=>$tag->get()]);
     }
     
-    public function ideaSearch(Idea $idea,Request $request)
+    public function ideaSearch(Idea $idea,Request $request,Tag $tag)
     {
         $keyword=$request->input('keyword');
+        $tags=$request->input('tag',[]);
+        
         $query=Idea::query();
         if (isset($keyword) && !empty($keyword))
         {
@@ -44,14 +47,23 @@ class IdeaController extends Controller
                     $tag->where('name','LIKE',"%{$keyword}%");
                 });
         }
+        
+        if(!empty($tags))
+        {
+            $query->whereHas('tag',function($query) use ($tags){
+                $query->whereIn('name',$tags);
+            });
+        }
+        
         $idea = $query->paginate(5);
-        return view('/ideas/search')->with(['ideas'=>$idea,'keyword'=>$keyword]);
+        return view('/ideas/search')->with(['ideas'=>$idea,'keyword'=>$keyword,'tags'=>$tag->get()]);
     }
     
     public function ideaStore(IdeaRequest $request,Idea $idea)
     {
         $input = $request['idea'];
-        //dd($request->all());
+        $image_url=Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+        $input += ['img_url'=>$image_url];
         $idea->tag_id = $request['tag'];
         $idea->user_id = Auth::id();
         $idea->fill($input)->save();

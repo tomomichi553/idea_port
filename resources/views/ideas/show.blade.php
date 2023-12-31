@@ -13,6 +13,7 @@
             
             <div class='idea'>
                 <br>
+                <img src="{{$idea->img_url}}" alt="No Image"/>
                 <h2 class='title'>タイトル：{{$idea->idea_title}}</h2>
                 <p class='background'>背景：{{$idea->idea_background}}</p>
                 <p class='goal'>目標：{{$idea->idea_goal}}</p>

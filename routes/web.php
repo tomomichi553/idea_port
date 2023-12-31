@@ -45,4 +45,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/troubles/{trouble}',[TroubleController::class,'troubleDelete']);
     Route::delete('/troubles/comments/{comment}',[TroubleController::class,'troubleCommentDelete']);
     
+    Route::post('s3',[S3Controller::class,'uploadS3'])->name('s3');
 });

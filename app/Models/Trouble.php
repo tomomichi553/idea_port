@@ -13,7 +13,8 @@ class Trouble extends Model
     use HasFactory;
     
     protected $fillable = [
-        'body',    
+        'body', 
+        'img_url',
     ];
     
     public function user():BelongsTo

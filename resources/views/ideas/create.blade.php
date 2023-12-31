@@ -12,8 +12,12 @@
         <div class='ideas'>
             <h2>アイデアの作成</h2>
             <div class='idea'>
-                <form action='/ideas' method="POST">
+                <form action='/ideas' method="POST" enctype="multipart/form-data">
                     @csrf
+                    <div class='image'>
+                        <h2>画像</h2>
+                        <input type="file" name="image" id="image">
+                    </div>
                     <div class='title'>
                         <h2>タイトル</h2>
                         <input type="text" name="idea[idea_title]" placeholder="タイトル"/>

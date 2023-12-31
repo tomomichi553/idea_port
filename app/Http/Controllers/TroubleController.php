@@ -12,6 +12,7 @@ use App\Models\Trouble;
 use App\Models\Tag;
 use App\Models\IdeaComments;
 use App\Models\TroubleComments;
+use Cloudinary;
 
 class TroubleController extends Controller
 {
@@ -20,8 +21,10 @@ class TroubleController extends Controller
         return view('troubles/create')->with(['tags'=>$tag->get()]);
     }
     
-    public function troubleSearch(Trouble $trouble,Request $request){
+    public function troubleSearch(Trouble $trouble,Request $request,Tag $tag){
         $keyword=$request->input('keyword');
+        $tags=$request->input('tag',[]);
+        
         $query=Trouble::query();
         if (isset($keyword) && !empty($keyword))
         {
@@ -30,8 +33,16 @@ class TroubleController extends Controller
                 $tag->where('name','LIKE',"%{$keyword}%");
             });
         }
+        
+        if(!empty($tags))
+        {
+            $query->whereHas('tag',function($query) use ($tags){
+                $query->whereIn('name',$tags);
+            });
+        }
+        
         $Trouble = $query->paginate(5);
-        return view('/troubles/search')->with(['troubles'=>$Trouble,'keyword'=>$keyword]);
+        return view('/troubles/search')->with(['troubles'=>$Trouble,'keyword'=>$keyword,'tags'=>$tag->get()]);
     }
     
     public function troubleShow(Trouble $trouble,TroubleComments $comment)
@@ -43,9 +54,10 @@ class TroubleController extends Controller
     public function troubleStore(TroubleRequest $request,Trouble $trouble)
     {
         $input = $request['trouble'];
+        $image_url=Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+        $input += ['img_url'=>$image_url];
         $trouble->tag_id = $request['tag'];
         $trouble->user_id = Auth::id();
-        //dd($trouble);
         $trouble->fill($input)->save();
         return redirect('/troubles/'.$trouble->id);
     }
