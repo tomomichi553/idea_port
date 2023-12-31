@@ -12,8 +12,12 @@
         <div class='troubles'>
             <h2>悩みの投稿</h2>
             <div class='idea'>
-                <form action="/troubles" method="POST">
+                <form action="/troubles" method="POST" enctype="multipart/form-data">
                     @csrf
+                    <div class='image'>
+                        <h2>画像</h2>
+                        <input type="file" name="image" id="image">
+                    </div>
                     <div class='body'>
                         <h2>悩み</h2>
                         <input type="textarea" name="trouble[body]" placeholder="悩み">

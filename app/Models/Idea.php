@@ -17,6 +17,7 @@ class Idea extends Model
         'idea_background',
         'idea_goal',
         'idea_detail',
+        'img_url',
         //'tag_id',
     ];
     

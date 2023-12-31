@@ -12,9 +12,13 @@
             <form action="/ideas/search" method="GET">
                 @csrf
                 <input type="text" name="keyword" value="{{ $keyword }}">
+                @foreach ($tags as $tag)
+                    <input type="checkbox" name='tag[]' value='{{ $tag->name}}'/>{{$tag->name}}
+                @endforeach  
                 <input type="submit" value="検索">
             </form>
         </div>
+    
         <div class='ideas'>
             <h2>アイデア一覧</h2>
             @foreach ($ideas as $idea)

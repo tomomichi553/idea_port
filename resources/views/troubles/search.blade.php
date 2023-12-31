@@ -11,6 +11,9 @@
     <div>
         <form action="/troubles/search" method="GET">
             <input type="text" name="keyword" value="{{ $keyword }}">
+            @foreach ($tags as $tag)
+                <input type="checkbox" name='tag[]' value='{{ $tag->name}}'/>{{$tag->name}}
+            @endforeach  
             <input type="submit" value="検索">
         </form>
     </div>

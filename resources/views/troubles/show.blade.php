@@ -12,6 +12,7 @@
         <div class='troubles'>
             <div class='trouble'>
                 <br>
+                <img src="{{$trouble->img_url}}" alt="No Image"/>
                 <h2 class='body'>悩み：{{$trouble->body}}</h2>
                 <p class='user'>ユーザー名：{{$trouble->user->name}}</p>
                 <p class='tag'>タグ:{{$trouble->tag->name}}</p>
