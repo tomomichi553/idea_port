@@ -1,41 +1,49 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    
-<x-app-layout>
-    <x-slot name="header">
-        <meta charset="utf-8">
-        <title>Idea_port</title>
-    </x-slot>
+@extends('layouts.common')
 
-    <h1>Idea_port</h1>
-    <div>
-        <form action="/troubles/search" method="GET">
-            <input type="text" name="keyword" value="{{ $keyword }}">
-            @foreach ($tags as $tag)
-                <input type="checkbox" name='tag[]' value='{{ $tag->name}}'/>{{$tag->name}}
-            @endforeach  
-            <input type="submit" value="検索">
-        </form>
-    </div>
-    
-    <div class='troubles'>
-        <h2>共感の多い悩み</h2>
-        @foreach ($troubles as $trouble)
-            <div class='idea'>
-                <br>
-                <h2 class='title'>
-                    <a href="/troubles/{{$trouble->id}}">悩み：{{$trouble->body}}</a>
-                </h2>
-                <p class='user'>ユーザー名：{{$trouble->user->name}}</p>
-                <p class='tag'>タグ：{{$trouble->tag->name}}</p>
+@section('head')
+    <link rel="stylesheet" href="{{secure_asset('assets/css/trouble_search.css')}}">
+@endsection
+
+@section('content')
+    <section class="trouble_search"> 
+        <div class="trouble_search_wrapper">
+            <form action="/ideas/search" method="GET">
+                <div class="textbox_wrapper">
+                    <input class="textbox" type="text" name="keyword" value="{{ $keyword }}">
+                </div>
+                <div class="tag_wrapper">
+                    @foreach ($tags as $tag)
+                        <label><input class="checkbox" type="checkbox" name='tag[]' value='{{ $tag->name}}'/>{{$tag->name}}</label>
+                    @endforeach  
+                </div>
+                <div class="submit_button">
+                    <input type="submit" value="検索">
+                </div>
+            </form>
+        </div>
+    </section>
+    <section class="troubles">
+        <div class="troubles_message">
+            <h2>共感の多い悩み</h2>
+        </div>
+        <div class="trouble_posts">
+            <div class="trouble_post_wrapper">
+                @foreach ($troubles as $trouble)
+                    <div class='idea'>
+                        <h2 class='title'>
+                            <a href="/troubles/{{$trouble->id}}">悩み：{{$trouble->body}}</a>
+                        </h2>
+                        <p class='user'>ユーザー名：{{$trouble->user->name}}</p>
+                        <p class='tag'>タグ：{{$trouble->tag->name}}</p>
+                    </div>
+                @endforeach
             </div>
-        @endforeach
-    </div>
-    <div class='paginate'>
-        {{ $troubles->links() }}
-    </div>
-    <div class="footer">
-        <a href="/">戻る</a>
-    </div>
-    
-</x-app-layout>
+            <div class="paginate">
+                {{ $troubles->links() }}
+            </div>
+            <div class="return">
+                <a href="/">戻る</a>
+            </div>
+        </div>
+    </section>
+@endsection

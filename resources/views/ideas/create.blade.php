@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    
-<x-app-layout>
-    <x-slot name="header">
-        <meta charset="utf-8">
-        <title>Idea_port</title>
-    </x-slot>
+@extends('layouts.common')
 
-     <h1>Idea_port</h1>
-    
-        <div class='ideas'>
+@section('head')
+    <link rel="stylesheet" href="{{secure_asset('assets/css/idea_create.css')}}">
+@endsection
+
+@section('content')
+     <section class="idea_detail">
+        <div class="idea_detail_wrapper">
             <h2>アイデアの作成</h2>
-            <div class='idea'>
-                <form action='/ideas' method="POST" enctype="multipart/form-data">
-                    @csrf
+            <form action='/ideas' method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="idea_content">
                     <div class='image'>
                         <h2>画像</h2>
                         <input type="file" name="image" id="image">
@@ -47,12 +44,16 @@
                         </select>
                         <p class="tag__error" style="color:red">{{ $errors->first('tag') }}</p>
                     </div>
-                    <input type="submit" value="作成する"/>
-                </form>
-                <div class="footer">
-                    <a href="/">戻る</a>
+                    <div class="submit_button">
+                        <input type="submit" value="作成する"/>
+                    </div>
                 </div>
+            </form>
+            <div class="return">
+                <a href="/">戻る</a>
             </div>
         </div>
+    </section>
+@endsection
     
-</x-app-layout>
+

@@ -1,20 +1,24 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    
-<x-app-layout>
-    <x-slot name="header">
-        <meta charset="utf-8">
-        <title>Idea_port</title>
-    </x-slot>
+@extends('layouts.common')
 
-     <h1>Idea_port</h1>
-    
-        <div class='ideas'>
+@section('head')
+    <link rel="stylesheet" href="{{secure_asset('assets/css/idea_edit.css')}}">
+@endsection
+
+@section('content')
+    <section class="idea_detail">
+        <div class="idea_detail_wrapper">
             <h2>アイデアの編集</h2>
-            <div class='idea'>
-                <form action='/ideas/{{$idea->id}}' method="POST">
-                    @csrf
-                    @method('PUT')
+            <form action='/ideas/{{$idea->id}}' method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="idea_content">
+                    <div class="image">
+                        <h2>画像</h2>
+                        <div class="idea_image">
+                           <img src="{{$idea->img_url}}" alt="No Image"/>
+                        </div>
+                        <input type="file" name="image" id="image" value="{{$idea->image}}">
+                    </div>
                     <div class='title'>
                         <h2>タイトル</h2>
                         <input type="text" name="idea[idea_title]" value="{{$idea->idea_title}}"/>
@@ -48,12 +52,14 @@
                         </select>
                         <p class="tag__error" style="color:red">{{ $errors->first('tag') }}</p>
                     </div>
-                    <input type="submit" value="保存"/>
-                </form>
-                <div class="footer">
-                    <a href="/">戻る</a>
+                    <div class="submit_button">
+                        <input type="submit" value="保存"/>
+                    </div>
                 </div>
+            </form>
+            <div class="return">
+                <a href="/">戻る</a>
             </div>
         </div>
-    
-</x-app-layout>
+    </section>
+@endsection
