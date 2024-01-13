@@ -18,11 +18,12 @@ class IdeaController extends Controller
 {
     public function ideaIndex(Idea $idea,Trouble $trouble)
     {
-        return view('ideas/index')->with(['ideas' => $idea -> get(),'troubles'=>$trouble->get()]);
+        return view('ideas/index')->with(['ideas' => $idea -> getByLimit(),'troubles'=>$trouble->getByLimit()]);
     }
     
     public function ideaShow(Idea $idea,IdeaComments $comment)
-    {
+    {   
+        
         $fillterdComments=$comment->where('idea_id',$idea->id)->get();
         return view('ideas/show')->with(['idea'=>$idea, 'comments'=> $fillterdComments]);
     }
@@ -62,8 +63,10 @@ class IdeaController extends Controller
     public function ideaStore(IdeaRequest $request,Idea $idea)
     {
         $input = $request['idea'];
-        $image_url=Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
-        $input += ['img_url'=>$image_url];
+        if($request->file('image')){
+            $image_url=Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+            $input += ['img_url'=>$image_url];
+        }
         $idea->tag_id = $request['tag'];
         $idea->user_id = Auth::id();
         $idea->fill($input)->save();
@@ -87,6 +90,10 @@ class IdeaController extends Controller
     public function ideaUpdate(IdeaRequest $request,Idea $idea)
     {
         $input = $request['idea'];
+        if($request->file('image')){
+            $image_url=Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+            $input += ['img_url'=>$image_url];
+        }
         $idea->tag_id = $request['tag'];
         $idea->fill($input)->save();
         return redirect('/ideas/'.$idea->id);

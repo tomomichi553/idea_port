@@ -1,0 +1,45 @@
+.trouble_detail{
+    width:85%;
+    margin: 0 auto;
+}
+
+.trouble_detail_wrapper{
+    display: flex;
+    align-items: center;
+}
+
+.trouble_detail_wrapper p{
+    flex:8;
+}
+
+.trouble_detail_wrapper a{
+    flex:1;
+}
+
+.trouble_comments{
+    width:85%;
+    margin:20px auto;
+}
+
+.trouble_comments h2{
+    text-align: center;
+}
+
+.trouble_comment_wrapper{
+    width: 80%;
+    margin: 10px auto;
+}
+
+.trouble_comment_post{
+     width:85%;
+    margin:10px auto;
+    display:flex;
+    align-items: center;
+    justify-content:center;
+}
+
+.return{
+    width:20%;
+    
+    margin-left:auto;
+}

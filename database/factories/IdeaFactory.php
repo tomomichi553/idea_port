@@ -22,7 +22,7 @@ class IdeaFactory extends Factory
         return [
             'user_id'=>User::factory(),
             'tag_id'=>Tag::factory(),
-            'img_url'=>fake()->word(),
+            
             'idea_title'=>fake()->word(),
             'idea_background'=>fake()->realText(20),
             'idea_goal'=>fake()->word(),

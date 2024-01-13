@@ -36,4 +36,9 @@ class Trouble extends Model
     {
         return $this->orderBy('updated_at','DESC')->paginate($limit_count);
     }
+    
+    public function getByLimit(int $limit_count = 9)
+    {
+        return $this->orderBy('updated_at','DESC')->limit($limit_count)->get();;
+    }
 }

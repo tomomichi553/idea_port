@@ -1,33 +1,38 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    
-<x-app-layout>
-    <x-slot name="header">
-        <meta charset="utf-8">
-        <title>Idea_port</title>
-    </x-slot>
+@extends('layouts.common')
 
-     <h1>Idea_port</h1>
-        <div>
+@section('head')
+    <link rel="stylesheet" href="{{secure_asset('assets/css/idea_search.css')}}">
+@endsection
+
+@section('content')
+    <section class="idea_search">
+        <div class="idea_search_wrapper">
             <form action="/ideas/search" method="GET">
-                @csrf
-                <input type="text" name="keyword" value="{{ $keyword }}">
-                @foreach ($tags as $tag)
-                    <input type="checkbox" name='tag[]' value='{{ $tag->name}}'/>{{$tag->name}}
-                @endforeach  
-                <input type="submit" value="検索">
+                <div class="textbox_wrapper">
+                    <input class="textbox" type="text" name="keyword" value="{{ $keyword }}">
+                </div>
+                <div class="tag_wrapper">
+                    @foreach ($tags as $tag)
+                        <label><input type="checkbox" name='tag[]' value='{{ $tag->name}}'/>{{$tag->name}}</label>
+                    @endforeach 
+                </div>
+                <div class="submit_button">
+                    <input type="submit" value="検索">
+                </div>
             </form>
         </div>
-    
-        <div class='ideas'>
-            <h2>アイデア一覧</h2>
+    </section>
+    <section class="idea_view">
+        <div class="idea_posts">
+            
             @foreach ($ideas as $idea)
-                <div class='idea'>
-                    <br>
-                    <h2 class='title'>
+                <div class='idea_post_wrapper'>
+                    <div class="idea_image">
+                       <img src="{{$idea->img_url}}" alt="No Image"/>
+                    </div>
+                    <h2 class='idea_title'>
                         <a href="/ideas/{{$idea->id}}">タイトル：{{$idea->idea_title}}</a>
                     </h2>
-                    <p class='background'>背景：{{$idea->idea_background}}</p>
                     <p class='user'>ユーザー名：{{$idea->user->name}}</p>
                     <p class='tag'>タグ：{{$idea->tag->name}}</p>
                 </div>
@@ -36,7 +41,8 @@
         <div class='paginate'>
             {{ $ideas->links() }}
         </div>
-        <div class="footer">
+        <div class="return">
             <a href="/">戻る</a>
         </div>
-</x-app-layout>
+    </section>
+@endsection

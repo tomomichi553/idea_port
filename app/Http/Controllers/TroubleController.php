@@ -54,8 +54,10 @@ class TroubleController extends Controller
     public function troubleStore(TroubleRequest $request,Trouble $trouble)
     {
         $input = $request['trouble'];
-        $image_url=Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
-        $input += ['img_url'=>$image_url];
+        if($request->file('image')){
+            $image_url=Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+            $input += ['img_url'=>$image_url];
+        }
         $trouble->tag_id = $request['tag'];
         $trouble->user_id = Auth::id();
         $trouble->fill($input)->save();
@@ -79,6 +81,10 @@ class TroubleController extends Controller
     public function troubleUpdate(TroubleRequest $request,Trouble $trouble)
     {
         $input=$request['trouble'];
+        if($request->file('image')){
+            $image_url=Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+            $input += ['img_url'=>$image_url];
+        }
         $trouble->tag_id=$request['tag'];
         $trouble->fill($input)->save();
         return redirect('/troubles/'.$trouble->id);

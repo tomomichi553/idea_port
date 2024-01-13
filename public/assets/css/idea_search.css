@@ -1,0 +1,69 @@
+.idea_search_wrapper{
+    width:85%;
+    margin:0 auto;
+}
+
+.textbox_wrapper{
+    text-align: center;
+}
+
+.textbox{
+    width:50%;
+    padding: 3px 7px;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+}
+
+.tag_wrapper{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    justify-items: center;
+}
+
+.checkbox{
+
+}
+
+label{
+    display: block;
+    margin-bottom: 5px;
+}
+
+.submit_button{
+    width:30%;
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.idea_view{
+    width:85%;
+    margin:0 auto;
+}
+
+.idea_posts{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.idea_post_wrapper{
+   
+}
+
+.idea_post_wrapper img{
+    width:80%;
+}
+    
+
+.paginate{
+    width:30%;
+    margin:0 auto;
+}
+
+.return{
+    width:20%;
+    
+    margin-left:auto;
+}

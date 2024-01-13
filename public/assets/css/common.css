@@ -1,0 +1,122 @@
+body {
+    color: #060606;
+    font-size: 16px;
+    font-family: "游ゴシック体","YuGothic"; 
+    font-weight: bold;
+  }
+  a{
+    text-decoration: none;
+    color: #060606;
+  }
+  
+  main, section, div, p, li, dt, dd, a{
+    margin:10px;
+    padding:10px;
+  }
+  /*header, footer, main, section{
+    border: 2px solid #f00;
+  }*/
+  div, p{
+    border: 1px solid #000;
+  }
+  
+  li, dt, dd, a{
+    border: 1px dotted #0f0;
+  }
+  
+
+.header{
+    border-bottom:3px solid #0F0F0F;
+    background-color: #6DC3D3;
+}
+
+.header_wrap{
+    width:90%;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+}
+
+.logo{
+    width:200px;
+    background-size:cover;
+    background-image: url("../img/IDEA LINK.png");
+}
+
+.logo a{
+    display:block;
+}
+
+.menus{
+    display:flex;
+    
+}
+
+.menu{
+    width:200px;
+    text-align: center;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    padding:0;
+}
+
+.menu a{
+    display:block;
+    font-family: "游ゴシック体","YuGothic"; 
+    font-weight: bold;
+    color:white;
+    font-size:20px;
+    margin:0;
+}
+
+.menu a:hover{
+    opacity: 0.7;
+}
+
+.menu_sub {
+    display: none;
+    position:absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    transition: display 0.3s ease-in-out;
+  }
+
+
+.menu_sub_item{
+    width:100%;
+    background-color: #6DC3D3;
+    margin: 0;
+    padding: 0;
+    border:1px solid black;
+}
+
+.footer{
+    border-top:3px solid #0F0F0F;
+    background-color: #6DC3D3;
+}
+
+.footer_logo{
+    margin:0 auto;
+    padding-top: 10px;
+    width:200px;
+    background-size:cover;
+    background-image: url("../img/IDEA LINK.png");
+}
+
+.footer_logo a{
+    display: block;
+    margin: 10px;
+}
+
+.copy{
+    margin-top: 30px;
+    text-align:center;
+}
+
+main{
+    background-color: white;
+}
