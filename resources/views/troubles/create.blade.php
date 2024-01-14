@@ -7,26 +7,33 @@
 @section('content')
     <section class="idea_detail">
         <div class="idea_detail_wrapper">
-            <h2>悩みの投稿</h2>
+            <div class="idea_create_message">
+                <div class="idea_create_logo"></div>
+                <h2>悩みの投稿</h2>
+            </div>
             <form action="/troubles" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class='image'>
                     <h2>画像</h2>
-                    <input type="file" name="image" id="image">
+                    <input class="img_box"　accept='image/*' onchange="previewImage(this);" type="file" name="image" id="image">
+                    <div class="idea_image">
+                       <img id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" >
+                    </div>
                 </div>
                 <div class='body'>
-                    <h2>悩み</h2>
-                    <input type="textarea" name="trouble[body]" placeholder="悩み">
-                    <p class="body__error" style="color:red">{{ $errors->first('trouble.body') }}</p>
+                    <div class="content_wrapper">
+                        <h2>悩み</h2>
+                        <p class="body__error" style="color:red">{{ $errors->first('trouble.body') }}</p>
+                    </div>
+                    <textarea class="textbox" name="trouble[body]" placeholder="悩み"></textarea>
                 </div>
                 <div class='tag'>
                     <h2>タグ</h2>
-                    <select name="tag", placeholder="タグ"/>
+                    <select class="tag_box" name="tag", placeholder="タグ"/>
                         @foreach ($tags as $tag)
                             <option value = "{{$tag->id}}">{{$tag->name}}</option>
                         @endforeach
                     </select>
-                    <p class="tag__error" style="color:red">{{ $errors->first('tag') }}</p>
                 </div>
                 <div class="submit_button">
                     <input type="submit" value="作成する"/>

@@ -7,7 +7,10 @@
 @section('content')
     <section class="idea_detail">
         <div class="idea_detail_wrapper">
-            <h2>悩みの編集</h2>
+            <div class="idea_create_message">
+                <div class="idea_create_logo"></div>
+                <h2>悩みの投稿</h2>
+            </div>
             <form action="/troubles/{{$trouble->id}}" method="POST">
                 @csrf
                 @method('PUT')
@@ -16,12 +19,17 @@
                     <div class="idea_image">
                        <img src="{{$trouble->img_url}}" alt="No Image"/>
                     </div>
-                    <input type="file" name="image" id="image">
+                    <input class="img_box" accept='image/*' onchange="previewImage(this);" type="file" name="image" id="image">
+                    <div class="idea_image">
+                       <img id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" >
+                    </div>
                 </div>
                 <div class='body'>
-                    <h2>悩み</h2>
-                    <input type="textarea" name="trouble[body]" value="{{$trouble->body}}">
-                    <p class="body__error" style="color:red">{{ $errors->first('trouble.body') }}</p>
+                     <div class="content_wrapper">
+                        <h2>悩み</h2>
+                        <p class="body__error" style="color:red">{{ $errors->first('trouble.body') }}</p>
+                    </div>
+                    <textarea class="textbox" name="trouble[body]">{{$trouble->body}}</textarea>
                 </div>
                 <div class='tag'>
                     <h2>タグ</h2>
@@ -34,14 +42,13 @@
                             @endif
                         @endforeach
                     </select>
-                    <p class="tag__error" style="color:red">{{ $errors->first('tag') }}</p>
                 </div>
                 <div class="submit_button">
                     <input type="submit" value="保存"/>
                 </div>
             </form>
             <div class="return">
-                <a href="/">戻る</a>
+                <a href="/profile/post">戻る</a>
             </div>
         </div>
     </section> 

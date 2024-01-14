@@ -63,5 +63,15 @@
         <div class="footer_logo"><a href="/"></a></div>
         <p class="copy">copyright</p>
     </footer>
+    <script>
+        function previewImage(obj)
+        {
+        	var fileReader = new FileReader();
+        	fileReader.onload = (function() {
+        		document.getElementById('preview').src = fileReader.result;
+        	});
+        	fileReader.readAsDataURL(obj.files[0]);
+        }
+    </script>
 </body>
 </html>
