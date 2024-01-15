@@ -8,33 +8,44 @@
     <section class="idea_search">
         <div class="idea_search_wrapper">
             <form action="/ideas/search" method="GET">
-                <div class="textbox_wrapper">
-                    <input class="textbox" type="text" name="keyword" value="{{ $keyword }}">
-                </div>
+                    <div class="textbox_wrapper">
+                        <input class="textbox" type="text" name="keyword" value="{{ $keyword }}">
+                        <input class="search" type="submit" value="検索">
+                    </div>
                 <div class="tag_wrapper">
                     @foreach ($tags as $tag)
                         <label><input type="checkbox" name='tag[]' value='{{ $tag->name}}'/>{{$tag->name}}</label>
                     @endforeach 
                 </div>
-                <div class="submit_button">
-                    <input type="submit" value="検索">
-                </div>
+                
             </form>
         </div>
     </section>
     <section class="idea_view">
         <div class="idea_posts">
-            
             @foreach ($ideas as $idea)
-                <div class='idea_post_wrapper'>
+                <div class="idea_post_wrapper">
                     <div class="idea_image">
-                       <img src="{{$idea->img_url}}" alt="No Image"/>
+                        @if ($idea->img_url)
+                            <img src="{{ $idea->img_url}}">
+                        @else
+                            <img src="https://res.cloudinary.com/dv5ph5jpi/image/upload/v1705112775/zce5gahhndl6cuoegpwp.jpg" >
+                        @endif
                     </div>
-                    <h2 class='idea_title'>
-                        <a href="/ideas/{{$idea->id}}">タイトル：{{$idea->idea_title}}</a>
-                    </h2>
-                    <p class='user'>ユーザー名：{{$idea->user->name}}</p>
-                    <p class='tag'>タグ：{{$idea->tag->name}}</p>
+                    <div class="idea_content">
+                        <div class="idea_title_wrapper">
+                            <h2 class='idea_title'>
+                                <a href="/ideas/{{$idea->id}}">{{$idea->idea_title}}</a>
+                            </h2>
+                        </div>
+                        <div class="idea_content_wrapper">
+                            <div class="date_icon"></div>
+                            <p class="date">{{$idea->created_at}}</p>
+                            <div class="user_icon"></div>
+                            <p class="user">{{$idea->user->name}}</p>
+                            <p class="tag">#{{$idea->tag->name}}</p>
+                        </div>
+                    </div>
                 </div>
             @endforeach
         </div>

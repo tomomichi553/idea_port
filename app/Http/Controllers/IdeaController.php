@@ -18,7 +18,7 @@ class IdeaController extends Controller
 {
     public function ideaIndex(Idea $idea,Trouble $trouble)
     {
-        return view('ideas/index')->with(['ideas' => $idea -> getByLimit(),'troubles'=>$trouble->getByLimit()]);
+        return view('ideas/index')->with(['ideas' => $idea -> ByLimit(),'troubles'=>$trouble->ByLimit()]);
     }
     
     public function ideaShow(Idea $idea,IdeaComments $comment)

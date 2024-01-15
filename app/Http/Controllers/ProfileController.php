@@ -65,8 +65,8 @@ class ProfileController extends Controller
     public function post(Idea $idea,Trouble $trouble)
     {
          $userId=Auth::id();
-         $ideas=$idea->where('user_id',$userId)->getByLimit();
-         $troubles=$trouble->where('user_id',$userId)->getByLimit();
+         $ideas=$idea->where('user_id',$userId)->latest()->take(9)->get();
+         $troubles=$trouble->where('user_id',$userId)->latest()->take(9)->get();
          return view('profile/index')->with(['ideas' => $ideas ,'troubles'=>$troubles]);
     }
     

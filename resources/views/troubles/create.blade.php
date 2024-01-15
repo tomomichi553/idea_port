@@ -25,7 +25,7 @@
                         <h2>悩み</h2>
                         <p class="body__error" style="color:red">{{ $errors->first('trouble.body') }}</p>
                     </div>
-                    <textarea class="textbox" name="trouble[body]" placeholder="悩み"></textarea>
+                    <textarea class="textbox" cols="50" rows="4" wrap="hard" name="trouble[body]" placeholder="悩み"></textarea>
                 </div>
                 <div class='tag'>
                     <h2>タグ</h2>
