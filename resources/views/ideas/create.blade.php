@@ -33,21 +33,21 @@
                             <h2>背景</h2>
                             <p class="error" style="color:red">{{ $errors->first('idea.idea_background') }}</p>
                         </div>
-                        <textarea class="textbox" cols="50" rows="4" name="idea[idea_background]" placeholder="背景"/></textarea>
+                        <textarea class="textbox" cols="50" rows="4" wrap="hard" name="idea[idea_background]" placeholder="背景"/></textarea>
                     </div>
                     <div class='goal'>
                         <div class="content_wrapper">
                             <h2>目標</h2>
                             <p class="error" style="color:red">{{ $errors->first('idea.idea_goal') }}</p>
                         </div>
-                        <textarea class="textbox" cols="50" rows="4" type="textarea" name="idea[idea_goal]" placeholder="目標"></textarea>
+                        <textarea class="textbox" cols="50" rows="4" wrap="hard" type="textarea" name="idea[idea_goal]" placeholder="目標"></textarea>
                     </div>
                     <div class='detail'>
                         <div class="content_wrapper">
                             <h2>詳細</h2>
                             <p class="error" style="color:red">{{ $errors->first('idea.idea_detail') }}</p>
                         </div>
-                        <textarea class="textbox" cols="50" rows="4" type="textarea" name="idea[idea_detail]" placeholder="詳細"></textarea>
+                        <textarea class="textbox" cols="50" rows="4" wrap="hard" type="textarea" name="idea[idea_detail]" placeholder="詳細"></textarea>
                     </div>
                     <div class='tag'>
                         <h2>タグ</h2>

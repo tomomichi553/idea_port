@@ -4,7 +4,9 @@
 }
 
 .textbox_wrapper{
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .textbox{
@@ -14,15 +16,21 @@
     border: 2px solid #ccc;
 }
 
+.search{
+    margin-left:10px;
+    width: 5%;
+    padding:10px;
+    border-radius: 20px;
+    border:1px solid gray;
+    background-color: #0D6BD3;
+    color:white;
+}
+
 .tag_wrapper{
     display:grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     justify-items: center;
-}
-
-.checkbox{
-
 }
 
 label{
@@ -31,29 +39,77 @@ label{
 }
 
 .submit_button{
-    width:30%;
+    flex:1;
     margin-left: auto;
-    display: flex;
-    justify-content: center;
-}
-
-.idea_view{
-    width:85%;
-    margin:0 auto;
 }
 
 .idea_posts{
-    display:grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
     gap: 10px;
+    width:90%;
+    margin: 0 auto;
 }
 
 .idea_post_wrapper{
-   
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    border:8px solid #F0F0F0;
 }
 
-.idea_post_wrapper img{
-    width:80%;
+.idea_image{
+    margin:0;
+    padding:0;
+    display: flex;
+    flex:1;
+}
+
+.idea_image img{
+    display: block;
+    margin:0 auto;
+    border:3px solid #F0F0F0;
+}
+
+.idea_content{
+    display: grid;
+    flex: 2;
+    align-items: center;
+}
+
+.idea_content a{
+    color: #F29559;
+    font-size: 26px;
+    
+}
+
+.idea_content_wrapper{
+    display:flex;
+    
+}
+
+.date_icon{
+    background-image: url("../img/clock.png");
+    width:40px;
+    height:40px;
+    background-size:cover;
+}
+
+.user_icon{
+    background-image: url("../img/user.png");
+    width:40px;
+    height:40px;
+    background-size:cover;
+}
+
+.idea_content_wrapper p{
+    display: inline-block;
+}
+
+.tag{
+    border-radius: 15px ;
+    background-color: #c0c0c0;
+    color:#4682b4;
 }
     
 
@@ -63,7 +119,22 @@ label{
 }
 
 .return{
-    width:20%;
-    
+    width:10%;
     margin-left:auto;
+    padding:0;
+    text-align: center;
+    border-radius: 20px;
+    border:1px solid gray;
+    background-color: #0D6BD3;
+    position:relative;
+}
+
+.return:hover{
+    opacity: 0.7;
+}
+
+.return a{
+    color:white;
+    display: block;
+    margin: 0;
 }

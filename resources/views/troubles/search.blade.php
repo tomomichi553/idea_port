@@ -10,40 +10,49 @@
             <form action="/ideas/search" method="GET">
                 <div class="textbox_wrapper">
                     <input class="textbox" type="text" name="keyword" value="{{ $keyword }}">
+                    <input class="search" type="submit" value="検索">
                 </div>
                 <div class="tag_wrapper">
                     @foreach ($tags as $tag)
                         <label><input class="checkbox" type="checkbox" name='tag[]' value='{{ $tag->name}}'/>{{$tag->name}}</label>
                     @endforeach  
                 </div>
-                <div class="submit_button">
-                    <input type="submit" value="検索">
-                </div>
             </form>
         </div>
     </section>
     <section class="troubles">
-        <div class="troubles_message">
-            <h2>共感の多い悩み</h2>
-        </div>
         <div class="trouble_posts">
-            <div class="trouble_post_wrapper">
-                @foreach ($troubles as $trouble)
-                    <div class='idea'>
-                        <h2 class='title'>
-                            <a href="/troubles/{{$trouble->id}}">悩み：{{$trouble->body}}</a>
-                        </h2>
-                        <p class='user'>ユーザー名：{{$trouble->user->name}}</p>
-                        <p class='tag'>タグ：{{$trouble->tag->name}}</p>
+            @foreach ($troubles as $trouble)
+                <div class="trouble_post_wrapper">
+                    <div class="trouble_image">
+                        @if ($trouble->img_url)
+                            <img src="{{ $trouble->img_url}}">
+                        @else
+                            <img src="https://res.cloudinary.com/dv5ph5jpi/image/upload/v1705112775/zce5gahhndl6cuoegpwp.jpg" >
+                        @endif
                     </div>
-                @endforeach
-            </div>
-            <div class="paginate">
-                {{ $troubles->links() }}
-            </div>
-            <div class="return">
-                <a href="/">戻る</a>
-            </div>
+                    <div class="trouble_content">
+                        <div class="trouble_title_wrapper">
+                            <h2 class='trouble_title'>
+                                <a href="/troubles/{{$trouble->id}}">{{$trouble->body}}</a>
+                            </h2>
+                        </div>
+                        <div class="trouble_content_wrapper">
+                            <div class="date_icon"></div>
+                            <p class="date">{{$trouble->created_at}}</p>
+                            <div class="user_icon"></div>
+                            <p class="user">{{$trouble->user->name}}</p>
+                            <p class="tag">#{{$trouble->tag->name}}</p>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <div class="paginate">
+            {{ $troubles->links() }}
+        </div>
+        <div class="return">
+            <a href="/">戻る</a>
         </div>
     </section>
 @endsection
