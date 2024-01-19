@@ -14,27 +14,29 @@
                     <img src="https://res.cloudinary.com/dv5ph5jpi/image/upload/v1705112775/zce5gahhndl6cuoegpwp.jpg" >
                 @endif
             </div>
-             <div class="idea_title">
-                <div class="idea_title_wrapper">
-                    <h2 class='idea_title'>
-                        <a href="/ideas/{{$idea->id}}">{{$idea->idea_title}}</a>
-                    </h2>
+            <div class="idea_wrapper">
+                <div class="idea_title">
+                    <div class="idea_title_wrapper">
+                        <h2 class='idea_title'>
+                            <a href="/ideas/{{$idea->id}}">{{$idea->idea_title}}</a>
+                        </h2>
+                    </div>
+                    <div class="idea_content_wrapper">
+                        <div class="date_icon"></div>
+                        <p class="date">{{$idea->created_at}}</p>
+                        <div class="user_icon"></div>
+                        <p class="user">{{$idea->user->name}}</p>
+                        <p class="tag">#{{$idea->tag->name}}</p>
+                    </div>
                 </div>
-                <div class="idea_content_wrapper">
-                    <div class="date_icon"></div>
-                    <p class="date">{{$idea->created_at}}</p>
-                    <div class="user_icon"></div>
-                    <p class="user">{{$idea->user->name}}</p>
-                    <p class="tag">#{{$idea->tag->name}}</p>
+                <div class="idea_content">
+                    <h3 class="content_title">背景</h3>
+                    <p class="content_textarea">{{$idea->idea_background}}</p>
+                    <h3 class="content_title">目標</h3>
+                    <p class="content_textarea">{{$idea->idea_goal}}</p>
+                    <h3 class="content_title">詳細</h3>
+                    <p class="content_textarea">{{$idea->idea_detail}}</p>
                 </div>
-            </div>
-            <div class="idea_content">
-                <h3 class="content_title">背景</h3>
-                <p class="content_textarea">{{$idea->idea_background}}</p>
-                <h3 class="content_title">目標</h3>
-                <p class="content_textarea">{{$idea->idea_goal}}</p>
-                <h3 class="content_title">詳細</h3>
-                <p class="content_textarea">{{$idea->idea_detail}}</p>
             </div>
         </div>
     </section>

@@ -71,6 +71,7 @@ outline:0;
 .idea_content{
     display:flex;
     flex-flow: column;
+    border: 1px solid #000;
 }
 
 .tag h2{

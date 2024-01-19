@@ -14,13 +14,15 @@
                     <img src="https://res.cloudinary.com/dv5ph5jpi/image/upload/v1705112775/zce5gahhndl6cuoegpwp.jpg" >
                 @endif
             </div>
-            <h2 class='trouble_title'>{{$trouble->body}}</h2>
-            <div class="trouble_content_wrapper">
-                <div class="date_icon"></div>
-                <p class="date">{{$trouble->created_at}}</p>
-                <div class="user_icon"></div>
-                <p class="user">{{$trouble->user->name}}</p>
-                <p class="tag">#{{$trouble->tag->name}}</p>
+            <div class="trouble_wrapper">
+                <h2 class='trouble_title'>{{$trouble->body}}</h2>
+                <div class="trouble_content_wrapper">
+                    <div class="date_icon"></div>
+                    <p class="date">{{$trouble->created_at}}</p>
+                    <div class="user_icon"></div>
+                    <p class="user">{{$trouble->user->name}}</p>
+                    <p class="tag">#{{$trouble->tag->name}}</p>
+                </div>
             </div>
         </div>
     </section>

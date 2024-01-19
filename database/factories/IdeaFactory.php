@@ -20,9 +20,8 @@ class IdeaFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id'=>User::factory(),
-            'tag_id'=>Tag::factory(),
-            
+            'user_id'=>User::inRandomOrder()->first()->id,
+            'tag_id'=>Tag::inRandomOrder()->first()->id,
             'idea_title'=>fake()->word(),
             'idea_background'=>fake()->realText(20),
             'idea_goal'=>fake()->word(),

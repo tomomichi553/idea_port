@@ -8,6 +8,10 @@
     margin:0 auto;
 }
 
+.idea_wrapper{
+    border: 1px solid #000;
+}
+
 .idea_title{
     display:flex;
     align-items: center;
@@ -84,6 +88,7 @@
 .idea_comment_wrapper{
     width: 80%;
     margin: 10px auto;
+    border: 1px solid #000;
 }
 
 .comment_wrapper{

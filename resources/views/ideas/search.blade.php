@@ -2,6 +2,7 @@
 
 @section('head')
     <link rel="stylesheet" href="{{secure_asset('assets/css/idea_search.css')}}">
+     <link rel="stylesheet" href="{{secure_asset('assets/css/paginate.css')}}">
 @endsection
 
 @section('content')
@@ -50,7 +51,7 @@
             @endforeach
         </div>
         <div class='paginate'>
-            {{ $ideas->links() }}
+            {{ $ideas->links('layouts.paginate') }}
         </div>
         <div class="return">
             <a href="/">戻る</a>

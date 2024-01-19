@@ -17,6 +17,10 @@
     margin:0 auto;
 }
 
+.trouble_wrapper{
+    border: 1px solid #000;
+}
+
 .trouble_title{
     color:#F29559;
     font-size: 26px;
@@ -59,11 +63,16 @@
     font-size: 30px;
 }
 
+.trouble_comment_wrapper{
+    border: 1px solid #000;
+}
+
 .comment_wrapper{
     display: flex;
     align-items: center;
     padding-top: 0;
     margin-top: 0;
+    
 }
 
 .comment_wrapper p{
