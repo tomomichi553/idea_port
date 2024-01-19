@@ -20,10 +20,9 @@ class TroubleFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id'=>User::factory(),
-            'tag_id'=>Tag::factory(),
+            'user_id'=>User::inRandomOrder()->first()->id,
+            'tag_id'=>Tag::inRandomOrder()->first()->id,
             'body'=>fake()->realText(20),
-            'img_url'=>fake()->word(),
             
         ];
     }

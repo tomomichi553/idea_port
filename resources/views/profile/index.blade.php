@@ -2,6 +2,7 @@
 
 @section('head')
     <link rel="stylesheet" href="{{secure_asset('assets/css/profile_index.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('assets/css/paginate.css')}}">
 @endsection
 
 @section('content')
@@ -43,6 +44,7 @@
                     </div>
                 </div>
             @endforeach
+           
         </div>
     </section>
     <section class="troubles">
@@ -83,6 +85,7 @@
                     </div>
                 </div>
             @endforeach
+            
         </div>
     </section>
         

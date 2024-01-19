@@ -54,7 +54,7 @@
     margin:0;
     padding:0;
     display: flex;
-    flex:1;
+    flex:2;
 }
 
 .idea_image img{
@@ -65,7 +65,7 @@
 
 .idea_content{
     display: grid;
-    flex: 2;
+    flex: 3;
     align-items: center;
 }
 
@@ -198,7 +198,7 @@
     margin:0;
     padding:0;
     display: flex;
-    flex:1;
+    flex:2;
 }
 
 .trouble_image img{
@@ -209,7 +209,7 @@
 
 .trouble_content{
     display: grid;
-    flex: 2;
+    flex: 3;
 }
 
 .trouble_title_wrapper{
@@ -224,10 +224,12 @@
 .trouble_content a{
     color: #F29559;
     font-size: 26px;
+    
 }
 
 .trouble_content_wrapper{
     display:flex;
+    align-items: center;
     
 }
 

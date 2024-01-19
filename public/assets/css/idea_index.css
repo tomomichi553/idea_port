@@ -47,7 +47,7 @@
     width: 100%;
     margin: 0 auto;
     display: flex;
-    border:8px solid #F0F0F0;
+    border: 1px solid #000;
 }
 
 .idea_image{
@@ -154,7 +154,7 @@
     width: 100%;
     margin: 0 auto;
     display: flex;
-    border:8px solid #F0F0F0;
+    border: 1px solid #000;
 }
 
 .trouble_image{

@@ -13,6 +13,20 @@ class TagSeeder extends Seeder
      */
     public function run(): void
     {
-        Tag::factory(5)->create();
+        $tags = [
+            ['name' => '健康'],
+            ['name' => '生活'],
+            ['name' => '人間関係'],
+            ['name' => '仕事'],
+            ['name' => 'メンタル'],
+            ['name' => 'テクノロジー'],
+            ['name' => 'ビジネス'],
+            ['name' => 'お金'],
+            ['name' => 'その他'],
+        ];
+        
+        foreach ($tags as $tag){
+            Tag::create($tag);
+        }
     }
 }

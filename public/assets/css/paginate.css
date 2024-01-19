@@ -1,0 +1,23 @@
+.paginate{
+    margin:0 auto;
+}
+
+.page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.p-pagination{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.p-pagination__previous{
+    width:30%;
+}
+
+.p-pagination__next{
+    width: 30%;
+}
+
