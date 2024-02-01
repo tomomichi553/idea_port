@@ -72,7 +72,6 @@
 .idea_content a{
     color: #F29559;
     font-size: 26px;
-    
 }
 
 .idea_content_wrapper{
@@ -96,6 +95,10 @@
 
 .idea_content_wrapper p{
     display: inline-block;
+}
+
+.user{
+    font-size: 16px;
 }
 
 .tag{

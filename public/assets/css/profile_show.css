@@ -1,0 +1,70 @@
+img{
+    width: 8rem; /* w-16 の代替 */
+    height: 8rem; /* h-16 の代替 */
+    border-radius: 9999px; /* rounded-full の代替。十分に大きな値で円形にする */
+    object-fit: cover; /* object-cover の代替 */
+    border: none; /* border-none の代替 */
+    background-color: #d1d5db; /* bg-gray-200 の代替 */
+}
+
+.profile_header_wrapper{
+    width:80%;
+    margin:0 auto;
+}
+
+.icon_wrapper{
+    display:flex;
+    align-items:center;
+    
+}
+
+.show_button{
+    color: white !important;
+    width:20%;
+    margin-left: 10%;
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    border:1px solid gray;
+    background-color: #F29559;
+}
+
+.show_button:hover{
+    opacity:0.7;
+}
+
+.edit_button{
+    color: white !important;
+    width:20%;
+    margin-left: 10%;
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    border:1px solid gray;
+    background-color: #0D6BD3;
+}
+
+
+.edit_button:hover{
+    opacity:0.7;
+}
+
+.profile_wrapper{
+    border:3px solid #000;
+}
+
+.profile_title{
+    display: inline-block;
+    border-bottom: dashed red;
+}
+
+.profile_content{
+    margin-left:30px;
+    background-color: #F0F0F0;
+}
+
+#content_textarea{
+    white-space: pre-wrap;
+    line-height: 1.3em;
+    margin-left: 30px;
+}
