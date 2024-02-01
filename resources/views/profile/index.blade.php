@@ -26,12 +26,14 @@
                             <h2 class='idea_title'>
                                 <a href="/ideas/{{$idea->id}}">{{$idea->idea_title}}</a>
                             </h2>
-                            <a href ="/ideas/{{$idea->id}}/edit" class="edit_button">編集</a>
-                            <form action="/ideas/{{$idea->id}}" id="form_{{$idea->id}}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button class="del_button" type='button' onclick="deleteIdea({{$idea->id}})">削除</button>
-                            </form>
+                            @if ($idea->user->id == Auth::id())
+                                <a href ="/ideas/{{$idea->id}}/edit" class="edit_button">編集</a>
+                                <form action="/ideas/{{$idea->id}}" id="form_{{$idea->id}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="del_button" type='button' onclick="deleteIdea({{$idea->id}})">削除</button>
+                                </form>
+                            @endif
                         </div>
                         <div class="idea_content_wrapper">
                             <div class="date_icon"></div>
@@ -45,6 +47,9 @@
                 </div>
             @endforeach
            
+        </div>
+        <div class='paginate'>
+            {{ $ideas->links('layouts.paginate') }}
         </div>
     </section>
     <section class="troubles">
@@ -67,12 +72,14 @@
                             <h2 class='trouble_title'>
                                 <a href="/troubles/{{$trouble->id}}">{{$trouble->body}}</a>
                             </h2>
-                            <a href="/troubles/{{$trouble->id}}/edit" class="edit_button">編集</a>
-                            <form action="/troubles/{{$trouble->id}}" id="form_{{$trouble->id}}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button class="del_button" type='button' onclick="deleteTrouble({{$trouble->id}})">削除</button>
-                            </form>
+                            @if ($trouble->user->id == Auth::id())
+                                <a href="/troubles/{{$trouble->id}}/edit" class="edit_button">編集</a>
+                                    <form action="/troubles/{{$trouble->id}}" id="form_{{$trouble->id}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="del_button" type='button' onclick="deleteTrouble({{$trouble->id}})">削除</button>
+                                    </form>
+                            @endif
                         </div>
                         <div class="trouble_content_wrapper">
                             <div class="date_icon"></div>
@@ -85,7 +92,9 @@
                     </div>
                 </div>
             @endforeach
-            
+            <div class='paginate'>
+                {{ $troubles->links('layouts.paginate') }}
+            </div>
         </div>
     </section>
         

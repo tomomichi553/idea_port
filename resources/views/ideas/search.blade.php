@@ -43,7 +43,7 @@
                             <div class="date_icon"></div>
                             <p class="date">{{$idea->created_at}}</p>
                             <div class="user_icon"></div>
-                            <p class="user">{{$idea->user->name}}</p>
+                            <a class="user" href="/profile/{{$idea->user->id}}">{{$idea->user->name}}</a>
                             <p class="tag">#{{$idea->tag->name}}</p>
                         </div>
                     </div>

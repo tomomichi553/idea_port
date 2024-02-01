@@ -20,7 +20,7 @@
                     <div class="date_icon"></div>
                     <p class="date">{{$trouble->created_at}}</p>
                     <div class="user_icon"></div>
-                    <p class="user">{{$trouble->user->name}}</p>
+                    <a class="user" href="/profile/{{$trouble->user->id}}">{{$trouble->user->name}}</a>
                     <p class="tag">#{{$trouble->tag->name}}</p>
                 </div>
             </div>

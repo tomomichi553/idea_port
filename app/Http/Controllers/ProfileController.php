@@ -11,6 +11,8 @@ use Illuminate\View\View;
 use App\Models\Idea;
 use App\Models\Trouble;
 use App\Models\Tag;
+use App\Models\User;
+use Cloudinary;
 
 
 class ProfileController extends Controller
@@ -30,12 +32,23 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
+        $icon = null;
+        if($request->hasFile('icon')){
+            $icon = Cloudinary::upload($request->file('icon')->getRealPath())->getSecurePath();
+            //dd($icon);
+        }
+        
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
-
+        //$request->files->remove('icon');
+        //$request->merge(['icon' => $icon]);
+        //dd($request);
+        if ($icon !== null) {
+            $request->user()->icon = $icon;
+        }
         $request->user()->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
@@ -62,13 +75,17 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
     
-    public function post(Idea $idea,Trouble $trouble)
+    public function post(User $user,Idea $idea,Trouble $trouble)
     {
-         $userId=Auth::id();
-         $ideas=$idea->where('user_id',$userId)->latest()->take(9)->get();
-         $troubles=$trouble->where('user_id',$userId)->latest()->take(9)->get();
+         //$userId=Auth::id();
+         $userId=$user->id;
+         $ideas=$idea->where('user_id',$userId)->latest()->paginate(5);
+         $troubles=$trouble->where('user_id',$userId)->latest()->paginate(5);
          return view('profile/index')->with(['ideas' => $ideas ,'troubles'=>$troubles]);
     }
     
-    
+    public function show(User $user)
+    {
+        return view('profile/show')->with(['user'=>$user]);
+    }
 }
