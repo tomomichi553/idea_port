@@ -41,4 +41,9 @@ class Trouble extends Model
     {
         return $this->orderBy('updated_at','DESC')->limit($limit_count)->get();;
     }
+    
+    public function trouble_likes()
+    {
+        return $this->hasMany(TroubleLike::class);
+    }
 }

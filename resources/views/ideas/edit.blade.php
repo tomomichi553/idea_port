@@ -71,7 +71,7 @@
                 </div>
             </form>
             <div class="return">
-                <a href="/profile/post">戻る</a>
+                <a href="/profile/post/{{Auth::id()}}">戻る</a>
             </div>
         </div>
     </section>

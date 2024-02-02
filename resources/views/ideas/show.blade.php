@@ -22,11 +22,35 @@
                         </h2>
                     </div>
                     <div class="idea_content_wrapper">
-                        <div class="date_icon"></div>
+                        <i class="fa-regular fa-clock fa-2x"></i>
                         <p class="date">{{$idea->created_at}}</p>
-                        <div class="user_icon"></div>
+                        <i class="fa-regular fa-circle-user fa-2x"></i>
                         <a class="user" href="/profile/{{$idea->user->id}}">{{$idea->user->name}}</a>
                         <p class="tag">#{{$idea->tag->name}}</p>
+                        
+                        <!-- もし$niceがあれば＝ユーザーが「いいね」をしていたら -->
+                        @if($like)
+                            
+                        <!-- 「いいね」取消用ボタンを表示 -->
+                        	<a href="{{ route('idea_unlike', $idea) }}" class="btn btn-success btn-sm">
+                        		<i class="fa-solid fa-heart"></i>
+                        		<!-- 「いいね」の数を表示 -->
+                        		<span class="badge">
+                        			{{ optional($idea->idea_likes)->count() ?? 0 }}
+                        		</span>
+                        	</a>
+                        @else
+                            
+                        <!-- まだユーザーが「いいね」をしていなければ、「いいね」ボタンを表示 -->
+                        	<a href="{{ route('idea_like', $idea) }}" class="btn btn-secondary btn-sm">
+                        		<i class="fa-regular fa-heart"></i>
+                        		<!-- 「いいね」の数を表示 -->
+                        		<span class="badge">
+                        			{{ optional($idea->idea_likes)->count() ?? 0 }}
+                        		</span>
+                        	</a>
+                        @endif
+                        
                     </div>
                 </div>
                 <div class="idea_content">

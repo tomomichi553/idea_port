@@ -30,20 +30,7 @@
 
 .idea_content_wrapper{
     display:flex;
-}
-
-.date_icon{
-    background-image: url("../img/clock.png");
-    width:40px;
-    height:40px;
-    background-size:cover;
-}
-
-.user_icon{
-    background-image: url("../img/user.png");
-    width:40px;
-    height:40px;
-    background-size:cover;
+    align-items: center;
 }
 
 .idea_content_wrapper p{
@@ -54,6 +41,13 @@
     border-radius: 15px ;
     background-color: #c0c0c0;
     color:#4682b4;
+}
+
+.fa-solid fa-heart{
+    color:red;
+    object-fit: cover;
+    align-items: center;
+    
 }
 
 .idea_content{

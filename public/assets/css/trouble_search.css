@@ -99,20 +99,7 @@ label{
 
 .trouble_content_wrapper{
     display:flex;
-}
-
-.date_icon{
-    background-image: url("../img/clock.png");
-    width:40px;
-    height:40px;
-    background-size:cover;
-}
-
-.user_icon{
-    background-image: url("../img/user.png");
-    width:40px;
-    height:40px;
-    background-size:cover;
+    align-items:center;
 }
 
 .tag{

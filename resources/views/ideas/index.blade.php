@@ -10,6 +10,7 @@
             <div class="idea_logo"></div>
             <h2>最新のアイデア</h2>
             <a href="/ideas/search">もっと見る</a>
+            <a href="#troubles" >最新の悩み</a>
         </div>
         <div class="idea_posts">
             @foreach ($ideas as $idea)
@@ -28,18 +29,22 @@
                             </h2>
                         </div>
                         <div class="idea_content_wrapper">
-                            <div class="date_icon"></div>
+                            <i class="fa-regular fa-clock fa-2x"></i>
                             <p class="date">{{$idea->created_at}}</p>
-                            <div class="user_icon"></div>
+                            <i class="fa-regular fa-circle-user fa-2x"></i>
                             <a class="user" href="/profile/{{$idea->user->id}}">{{$idea->user->name}}</a>
                             <p class="tag">#{{$idea->tag->name}}</p>
+                            <i class="fa-regular fa-heart"></i>
+                            <span>{{ optional($idea->idea_likes)->count() ?? 0 }}</span>
+                            
                         </div>
                     </div>
                 </div>
             @endforeach
+           
         </div>
     </section>
-    <section class="troubles">
+    <section class="troubles" id="troubles">
         <div class="troubles_message">
             <div class="trouble_logo"></div>
             <h2>最新の悩み</h2>
@@ -62,11 +67,13 @@
                             </h2>
                         </div>
                         <div class="trouble_content_wrapper">
-                            <div class="date_icon"></div>
+                            <i class="fa-regular fa-clock fa-2x"></i>
                             <p class="date">{{$trouble->created_at}}</p>
-                            <div class="user_icon"></div>
+                            <i class="fa-regular fa-circle-user fa-2x"></i>
                             <a class="user" href="/profile/{{$trouble->user->id}}">{{$trouble->user->name}}</a>
                             <p class="tag">#{{$trouble->tag->name}}</p>
+                            <i class="fa-regular fa-heart"></i>
+                            <span>{{ optional($trouble->trouble_likes)->count() ?? 0 }}</span>
                         </div>
                     </div>
                 </div>

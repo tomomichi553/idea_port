@@ -10,6 +10,7 @@
 
 .trouble_content_wrapper{
     display:flex;
+    align-items:center;
 }
 
 .trouble_image{
@@ -26,20 +27,6 @@
     font-size: 26px;
     margin-left: 30px;
     margin-top: 3rem;
-}
-
-.date_icon{
-    background-image: url("../img/clock.png");
-    width:40px;
-    height:40px;
-    background-size:cover;
-}
-
-.user_icon{
-    background-image: url("../img/user.png");
-    width:40px;
-    height:40px;
-    background-size:cover;
 }
 
 .idea_content_wrapper p{
