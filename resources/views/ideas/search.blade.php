@@ -40,9 +40,9 @@
                             </h2>
                         </div>
                         <div class="idea_content_wrapper">
-                            <div class="date_icon"></div>
+                            <i class="fa-regular fa-clock fa-2x"></i>
                             <p class="date">{{$idea->created_at}}</p>
-                            <div class="user_icon"></div>
+                            <i class="fa-regular fa-circle-user fa-2x"></i>
                             <a class="user" href="/profile/{{$idea->user->id}}">{{$idea->user->name}}</a>
                             <p class="tag">#{{$idea->tag->name}}</p>
                         </div>

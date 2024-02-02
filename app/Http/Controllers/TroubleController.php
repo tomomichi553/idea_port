@@ -9,6 +9,7 @@ use App\Http\Requests\TroubleRequest;
 use App\Http\Controllers\Post;
 use App\Models\Idea;
 use App\Models\Trouble;
+use App\Models\TroubleLike;
 use App\Models\Tag;
 use App\Models\IdeaComments;
 use App\Models\TroubleComments;
@@ -47,8 +48,9 @@ class TroubleController extends Controller
     
     public function troubleShow(Trouble $trouble,TroubleComments $comment)
     {
+        $like=TroubleLike::where('trouble_id',$trouble->id)->where('user_id',auth()->user()->id)->first();
         $fillterdComments=$comment->where('trouble_id',$trouble->id)->get();
-        return view('troubles/show')->with(['trouble'=>$trouble,'comments'=>$fillterdComments]);
+        return view('troubles/show')->with(['trouble'=>$trouble,'comments'=>$fillterdComments,'like'=>$like]);
     }
     
     public function troubleStore(TroubleRequest $request,Trouble $trouble)

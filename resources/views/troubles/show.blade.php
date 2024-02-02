@@ -17,11 +17,32 @@
             <div class="trouble_wrapper">
                 <h2 class='trouble_title'>{{$trouble->body}}</h2>
                 <div class="trouble_content_wrapper">
-                    <div class="date_icon"></div>
+                    <i class="fa-regular fa-clock fa-2x"></i>
                     <p class="date">{{$trouble->created_at}}</p>
-                    <div class="user_icon"></div>
+                    <i class="fa-regular fa-circle-user fa-2x"></i>
                     <a class="user" href="/profile/{{$trouble->user->id}}">{{$trouble->user->name}}</a>
                     <p class="tag">#{{$trouble->tag->name}}</p>
+                        @if($like)
+                            
+                        <!-- 「いいね」取消用ボタンを表示 -->
+                        	<a href="{{ route('trouble_unlike', $trouble) }}" class="btn btn-success btn-sm">
+                        		<i class="fa-solid fa-heart"></i>
+                        		<!-- 「いいね」の数を表示 -->
+                        		<span class="badge">
+                        			{{ optional($trouble->trouble_likes)->count() ?? 0 }}
+                        		</span>
+                        	</a>
+                        @else
+                            
+                        <!-- まだユーザーが「いいね」をしていなければ、「いいね」ボタンを表示 -->
+                        	<a href="{{ route('trouble_like', $trouble) }}" class="btn btn-secondary btn-sm">
+                        		<i class="fa-regular fa-heart"></i>
+                        		<!-- 「いいね」の数を表示 -->
+                        		<span class="badge">
+                        			{{ optional($trouble->trouble_likes)->count() ?? 0 }}
+                        		</span>
+                        	</a>
+                        @endif
                 </div>
             </div>
         </div>

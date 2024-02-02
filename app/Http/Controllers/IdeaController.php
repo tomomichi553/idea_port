@@ -8,6 +8,7 @@ use App\Http\Requests\IdeaRequest;
 use App\Http\Requests\TroubleRequest;
 use App\Http\Controllers\Post;
 use App\Models\Idea;
+use App\Models\IdeaLike;
 use App\Models\Trouble;
 use App\Models\Tag;
 use App\Models\IdeaComments;
@@ -23,9 +24,9 @@ class IdeaController extends Controller
     
     public function ideaShow(Idea $idea,IdeaComments $comment)
     {   
-        
+        $like=IdeaLike::where('idea_id',$idea->id)->where('user_id',auth()->user()->id)->first();
         $fillterdComments=$comment->where('idea_id',$idea->id)->get();
-        return view('ideas/show')->with(['idea'=>$idea, 'comments'=> $fillterdComments]);
+        return view('ideas/show')->with(['idea'=>$idea, 'comments'=> $fillterdComments,'like'=>$like]);
     }
     
     public function ideaCreate(Tag $tag)

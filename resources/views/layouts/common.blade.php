@@ -10,7 +10,9 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>idea_port</title>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="{{secure_asset('assets/js/footerFixed.js')}}"></script> 
+    <script src="https://kit.fontawesome.com/6f73f8946d.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{secure_asset('assets/css/reset.css')}}">
     <link rel="stylesheet" href="{{secure_asset('assets/css/common.css')}}">
     @yield('head')
@@ -37,8 +39,8 @@
                         <li class="menu_sub_item"><a href="/troubles/create">悩み投稿</a></li>
                     </ul>
                 </li>
-                <li class="menu"><a href="/ideas/search">アイデア一覧</a></li>
-                <li class="menu"><a href="/troubles/search">悩み一覧</a></li>
+                <li class="menu"><a href="/ideas/search">アイデア検索</a></li>
+                <li class="menu"><a href="/troubles/search">悩み検索</a></li>
                 <li class="menu">
                     <a class="menu_drop">マイページ</a>
                     <ul class="menu_sub">
@@ -59,7 +61,7 @@
         @yield('content')
     </main>
     
-     <footer class="footer">
+     <footer class="footer" id=footer>
         <div class="footer_logo"><a href="/"></a></div>
         <p class="copy">copyright</p>
     </footer>
@@ -79,6 +81,8 @@
                 document.getElementById(`form_${id}`).submit();
             }
         }
+        
+        
     </script>
 </body>
 </html>

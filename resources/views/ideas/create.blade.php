@@ -15,7 +15,7 @@
                 @csrf
                 <div class="idea_content">
                     <div class='image'>
-                        <h2>画像</h2>
+                        <h2>画像(＊任意)</h2>
                         <input class="img_box" accept='image/*' onchange="previewImage(this);" type="file" name="image" id="image">
                         <div class="idea_image">
                            <img id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" >
@@ -44,7 +44,7 @@
                     </div>
                     <div class='detail'>
                         <div class="content_wrapper">
-                            <h2>詳細</h2>
+                            <h2>詳細(＊任意)</h2>
                             <p class="error" style="color:red">{{ $errors->first('idea.idea_detail') }}</p>
                         </div>
                         <textarea class="textbox" cols="50" rows="4" wrap="hard" type="textarea" name="idea[idea_detail]" placeholder="詳細"></textarea>

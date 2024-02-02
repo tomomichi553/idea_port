@@ -25,7 +25,6 @@ class IdeaRequest extends FormRequest
             'idea.idea_title'=>'required|string|max:100',
             'idea.idea_background'=>'required|string|max:500',
             'idea.idea_goal'=>'required|string|max:500',
-            'idea.idea_detail'=>'required|string|max:500',
             'tag'=>'required',
         ];
     }
@@ -36,7 +35,6 @@ class IdeaRequest extends FormRequest
             'idea.idea_title.required' => 'タイトルは必須項目です',
             'idea.idea_background.required' => '背景は必須項目です',
             'idea.idea_goal.required' => '目標は必須項目です',
-            'idea.idea_detail.required' => '詳細は必須項目です',
             'tag.required'=>'タグは必須項目です'
         ];
     }

@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\TroubleController;
+use App\Http\Controllers\IdeaLikeController;
+use App\Http\Controllers\TroubleLikeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -45,5 +47,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/troubles/{trouble}',[TroubleController::class,'troubleDelete']);
     Route::delete('/troubles/comments/{comment}',[TroubleController::class,'troubleCommentDelete']);
     
+    Route::get('/ideas/like/{idea}',[IdeaLikeController::class,'like'])->name('idea_like');
+    Route::get('/ideas/unlike/{idea}',[IdeaLikeController::class,'unlike'])->name('idea_unlike');
+    
+    Route::get('/troubles/like/{trouble}',[TroubleLikeController::class,'like'])->name('trouble_like');
+    Route::get('/troubles/unlike/{trouble}',[TroubleLikeController::class,'unlike'])->name('trouble_unlike');
+
     Route::post('s3',[S3Controller::class,'uploadS3'])->name('s3');
 });

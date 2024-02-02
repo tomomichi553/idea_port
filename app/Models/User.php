@@ -66,4 +66,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(TroubleComments::class);
     }
+    
+    public function idea_likes()
+    {
+        return $this->hasMany(IdeaLike::class);
+    }
+    
+    public function trouble_likes()
+    {
+        return $this->hasMany(TroubleLike::class);
+    }
 }

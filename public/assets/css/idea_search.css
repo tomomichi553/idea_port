@@ -86,22 +86,9 @@ label{
 
 .idea_content_wrapper{
     display:flex;
-    
+    align-items:center;     
 }
 
-.date_icon{
-    background-image: url("../img/clock.png");
-    width:40px;
-    height:40px;
-    background-size:cover;
-}
-
-.user_icon{
-    background-image: url("../img/user.png");
-    width:40px;
-    height:40px;
-    background-size:cover;
-}
 
 .idea_content_wrapper p{
     display: inline-block;
