@@ -22,26 +22,16 @@
                     <i class="fa-regular fa-circle-user fa-2x"></i>
                     <a class="user" href="/profile/{{$trouble->user->id}}">{{$trouble->user->name}}</a>
                     <p class="tag">#{{$trouble->tag->name}}</p>
-                        @if($like)
-                            
-                        <!-- 「いいね」取消用ボタンを表示 -->
-                        	<a href="{{ route('trouble_unlike', $trouble) }}" class="btn btn-success btn-sm">
-                        		<i class="fa-solid fa-heart"></i>
-                        		<!-- 「いいね」の数を表示 -->
-                        		<span class="badge">
-                        			{{ optional($trouble->trouble_likes)->count() ?? 0 }}
-                        		</span>
-                        	</a>
+                        @if (!$trouble->istroubleLikedBy(Auth::user()))
+                            <span class="likes">
+                                <i class="fas fa-heart troublelike-toggle fa-2x" data-trouble-id="{{ $trouble->id }}"></i>
+                            <span class="like-counter">{{$trouble->likes_count}}</span>
+                            </span><!-- /.likes -->
                         @else
-                            
-                        <!-- まだユーザーが「いいね」をしていなければ、「いいね」ボタンを表示 -->
-                        	<a href="{{ route('trouble_like', $trouble) }}" class="btn btn-secondary btn-sm">
-                        		<i class="fa-regular fa-heart"></i>
-                        		<!-- 「いいね」の数を表示 -->
-                        		<span class="badge">
-                        			{{ optional($trouble->trouble_likes)->count() ?? 0 }}
-                        		</span>
-                        	</a>
+                            <span class="likes">
+                                <i class="fas fa-heart heart troublelike-toggle liked fa-2x" data-trouble-id="{{ $trouble->id }}"></i>
+                            <span class="like-counter">{{$trouble->likes_count}}</span>
+                            </span><!-- /.likes -->
                         @endif
                 </div>
             </div>
