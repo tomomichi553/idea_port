@@ -46,4 +46,10 @@ class Trouble extends Model
     {
         return $this->hasMany(TroubleLike::class);
     }
+    
+    
+    public function isTroubleLikedBy($user): bool 
+    {
+        return TroubleLike::where('user_id', $user->id)->where('trouble_id', $this->id)->first() !==null;
+    }
 }

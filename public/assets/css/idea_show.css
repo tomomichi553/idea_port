@@ -1,3 +1,5 @@
+
+
 .idea_detail_wrapper{
     width:80%;
     margin:0 auto;
@@ -43,11 +45,16 @@
     color:#4682b4;
 }
 
-.fa-solid fa-heart{
-    color:red;
-    object-fit: cover;
-    align-items: center;
-    
+.liked {
+    color: rgb(225, 58, 86);
+}
+
+.like-toggle {
+    cursor: pointer;
+}
+
+.like-counter{
+    font-size:26px;
 }
 
 .idea_content{

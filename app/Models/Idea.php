@@ -52,6 +52,11 @@ class Idea extends Model
         return $this->hasMany(IdeaLike::class);
     }
     
+    public function isIdeaLikedBy($user): bool 
+    {
+        return IdeaLike::where('user_id', $user->id)->where('idea_id', $this->id)->first() !==null;
+    }
+    
 }
     
 

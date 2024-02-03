@@ -28,27 +28,16 @@
                         <a class="user" href="/profile/{{$idea->user->id}}">{{$idea->user->name}}</a>
                         <p class="tag">#{{$idea->tag->name}}</p>
                         
-                        <!-- もし$niceがあれば＝ユーザーが「いいね」をしていたら -->
-                        @if($like)
-                            
-                        <!-- 「いいね」取消用ボタンを表示 -->
-                        	<a href="{{ route('idea_unlike', $idea) }}" class="btn btn-success btn-sm">
-                        		<i class="fa-solid fa-heart"></i>
-                        		<!-- 「いいね」の数を表示 -->
-                        		<span class="badge">
-                        			{{ optional($idea->idea_likes)->count() ?? 0 }}
-                        		</span>
-                        	</a>
+                        @if (!$idea->isideaLikedBy(Auth::user()))
+                            <span class="likes">
+                                <i class="fas fa-heart like-toggle fa-2x" data-idea-id="{{ $idea->id }}"></i>
+                            <span class="like-counter">{{$idea->likes_count}}</span>
+                            </span><!-- /.likes -->
                         @else
-                            
-                        <!-- まだユーザーが「いいね」をしていなければ、「いいね」ボタンを表示 -->
-                        	<a href="{{ route('idea_like', $idea) }}" class="btn btn-secondary btn-sm">
-                        		<i class="fa-regular fa-heart"></i>
-                        		<!-- 「いいね」の数を表示 -->
-                        		<span class="badge">
-                        			{{ optional($idea->idea_likes)->count() ?? 0 }}
-                        		</span>
-                        	</a>
+                            <span class="likes">
+                                <i class="fas fa-heart heart like-toggle liked fa-2x" data-idea-id="{{ $idea->id }}"></i>
+                            <span class="like-counter">{{$idea->likes_count}}</span>
+                            </span><!-- /.likes -->
                         @endif
                         
                     </div>
@@ -98,4 +87,52 @@
     <div class="return">
         <a href="/">戻る</a>
     </div>
+    <script>
+        $(document).ready(function () {
+            $('.like-btn').click(function (e) {
+                e.preventDefault();
+                var ideaId = $(this).data('idea-id');
+                var likeCountSpan = $(this).find('.like-count');
+                console.log(ideaId,'ideaid');
+                console.log(likeCountSpan);
+                $.ajax({
+                    type: 'GET',
+                    url: '/ideas/like/' + ideaId,
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                    },
+                    success: function (data) {
+                        // 成功時の処理
+                        // 例えば、いいねの数を更新するなど
+                        likeCountSpan.text(data.likeCount);
+                    },
+                    error: function (error) {
+                        console.log('エラーが発生しました');
+                    }
+                });
+            });
+    
+            $('.unlike-btn').click(function (e) {
+                e.preventDefault();
+                var ideaId = $(this).data('idea-id');
+                var likeCountSpan = $(this).find('.like-count'); 
+                
+                $.ajax({
+                    type: 'GET',
+                    url: '/ideas/unlike/' + ideaId,
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                    },
+                    success: function (data) {
+                        // 成功時の処理
+                        // 例えば、いいねの数を更新するなど
+                        likeCountSpan.text(data.likeCount);
+                    },
+                    error: function (error) {
+                        console.log('エラーが発生しました');
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

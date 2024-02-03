@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\Idea;
+use App\Models\IdeaLike;
 use App\Models\Trouble;
+use App\Models\TroubleLike;
 use App\Models\Tag;
 use App\Models\User;
 use Cloudinary;
@@ -87,5 +89,16 @@ class ProfileController extends Controller
     public function show(User $user)
     {
         return view('profile/show')->with(['user'=>$user]);
+    }
+    
+    public function like(Idea $idea,IdeaLike $idealike,Trouble $trouble,TroubleLike $troublelike)
+    {
+        //dd($idealike);
+        $like=IdeaLike::where('user_id',Auth::id());
+        dd($like);
+        $ideas=$idealike->where('user_id',Auth::id())->pluck('idea');
+        dd($ideas);
+        $troubles=$trouble->trouble_likes->where('user_id',Auth::id());
+        return view('profile/like')->with(['ideas'=>$ideas,'troubles'=>$troubles]);
     }
 }
