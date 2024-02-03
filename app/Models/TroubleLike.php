@@ -22,4 +22,5 @@ class TroubleLike extends Model
     {
         return $this->belongsTo(Trouble::class);
     }
+    
 }

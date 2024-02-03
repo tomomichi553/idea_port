@@ -13,6 +13,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="{{secure_asset('assets/js/footerFixed.js')}}"></script> 
     <script src="https://kit.fontawesome.com/6f73f8946d.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <link rel="stylesheet" href="{{secure_asset('assets/css/reset.css')}}">
     <link rel="stylesheet" href="{{secure_asset('assets/css/common.css')}}">
     @yield('head')
@@ -46,6 +47,7 @@
                     <ul class="menu_sub">
                         <li class="menu_sub_item"><a href="/profile/{{Auth::id()}}">プロフィール</a></li>
                         <li class="menu_sub_item"><a href="/profile/post/{{Auth::id()}}">投稿一覧</a></li>
+                        <li class="menu_sub_item"><a href="/profile/like">いいね一覧</a></li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <li class="menu_sub_item"><a><input type="submit" value="ログアウト"></a></li>

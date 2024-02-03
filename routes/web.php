@@ -19,7 +19,9 @@ Route::middleware('auth')->group(function () {
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/profile/post/{user}',[ProfileController::class,'post'])->name('profile.post');
+    Route::get('/profile/like',[ProfileController::class,'like']);
     Route::get('/profile/{user}',[ProfileController::class,'show'])->name('profile.show');
+    
 });
 
 require __DIR__.'/auth.php';
@@ -47,8 +49,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/troubles/{trouble}',[TroubleController::class,'troubleDelete']);
     Route::delete('/troubles/comments/{comment}',[TroubleController::class,'troubleCommentDelete']);
     
-    Route::get('/ideas/like/{idea}',[IdeaLikeController::class,'like'])->name('idea_like');
-    Route::get('/ideas/unlike/{idea}',[IdeaLikeController::class,'unlike'])->name('idea_unlike');
+    Route::post('/ideas/like', [IdeaLikeController::class, 'like'])->name('ideas.like');
+    
+    
     
     Route::get('/troubles/like/{trouble}',[TroubleLikeController::class,'like'])->name('trouble_like');
     Route::get('/troubles/unlike/{trouble}',[TroubleLikeController::class,'unlike'])->name('trouble_unlike');

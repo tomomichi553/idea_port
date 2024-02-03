@@ -26,6 +26,7 @@ class IdeaController extends Controller
     {   
         $like=IdeaLike::where('idea_id',$idea->id)->where('user_id',auth()->user()->id)->first();
         $fillterdComments=$comment->where('idea_id',$idea->id)->get();
+        $idea->likes_count=$idea->idea_likes()->count();
         return view('ideas/show')->with(['idea'=>$idea, 'comments'=> $fillterdComments,'like'=>$like]);
     }
     

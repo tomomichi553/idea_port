@@ -85,6 +85,7 @@
 
 .idea_content_wrapper{
     display:flex;
+    align-items: center;
 }
 
 .edit_button{
