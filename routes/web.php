@@ -50,6 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/troubles/comments/{comment}',[TroubleController::class,'troubleCommentDelete']);
     
     Route::post('/ideas/like', [IdeaLikeController::class, 'like'])->name('ideas.like');
+    Route::post('/troubles/like', [TroubleLikeController::class, 'like'])->name('troubles.like');
     
     
     

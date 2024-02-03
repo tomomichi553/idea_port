@@ -14,7 +14,7 @@ class IdeaLikeController extends Controller
     {
         $user_id = Auth::user()->id; // ログインしているユーザーのidを取得
         $idea_id = $request->post_id; // 投稿のidを取得
-    
+        //dd($idea_id);
         // すでにいいねがされているか判定するためにlikesテーブルから1件取得
         $already_liked = IdeaLike::where('user_id', $user_id)->where('idea_id', $idea_id)->first(); 
     

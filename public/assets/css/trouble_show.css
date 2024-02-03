@@ -39,6 +39,18 @@
     color:#4682b4;
 }
 
+.liked {
+    color: rgb(225, 58, 86);
+}
+
+.like-toggle {
+    cursor: pointer;
+}
+
+.like-counter{
+    font-size:26px;
+}
+
 .trouble_comments{
     width:85%;
     margin:20px auto;

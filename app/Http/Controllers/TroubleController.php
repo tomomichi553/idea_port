@@ -50,6 +50,7 @@ class TroubleController extends Controller
     {
         $like=TroubleLike::where('trouble_id',$trouble->id)->where('user_id',auth()->user()->id)->first();
         $fillterdComments=$comment->where('trouble_id',$trouble->id)->get();
+        $trouble->likes_count=$trouble->trouble_likes()->count();
         return view('troubles/show')->with(['trouble'=>$trouble,'comments'=>$fillterdComments,'like'=>$like]);
     }
     
