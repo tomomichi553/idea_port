@@ -15,6 +15,7 @@ use App\Models\TroubleLike;
 use App\Models\Tag;
 use App\Models\User;
 use Cloudinary;
+use Illuminate\Support\Facades\DB;
 
 
 class ProfileController extends Controller
@@ -93,12 +94,15 @@ class ProfileController extends Controller
     
     public function like(Idea $idea,IdeaLike $idealike,Trouble $trouble,TroubleLike $troublelike)
     {
-        //dd($idealike);
-        $like=IdeaLike::where('user_id',Auth::id());
-        dd($like);
-        $ideas=$idealike->where('user_id',Auth::id())->pluck('idea');
-        dd($ideas);
-        $troubles=$trouble->trouble_likes->where('user_id',Auth::id());
+        //$ideas=$idealike->where('user_id',Auth::id());
+        $ideas = IdeaLike::where('user_id', Auth::id())
+            ->with('idea.tag','idea.user')
+            ->get();
+        //dd($ideas);
+        $troubles=TroubleLike::where('user_id', Auth::id())
+            ->with('trouble.tag','trouble.user')
+            ->get();
+        //dd($troubles);
         return view('profile/like')->with(['ideas'=>$ideas,'troubles'=>$troubles]);
     }
 }
