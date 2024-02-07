@@ -92,7 +92,7 @@ class ProfileController extends Controller
         return view('profile/show')->with(['user'=>$user]);
     }
     
-    public function like(Idea $idea,IdeaLike $idealike,Trouble $trouble,TroubleLike $troublelike)
+    public function like(Idea $idea,Trouble $trouble)
     {
         //$ideas=$idealike->where('user_id',Auth::id());
         $ideas = IdeaLike::where('user_id', Auth::id())
