@@ -87,52 +87,5 @@
     <div class="return">
         <a href="/">戻る</a>
     </div>
-    <script>
-        $(document).ready(function () {
-            $('.like-btn').click(function (e) {
-                e.preventDefault();
-                var ideaId = $(this).data('idea-id');
-                var likeCountSpan = $(this).find('.like-count');
-                console.log(ideaId,'ideaid');
-                console.log(likeCountSpan);
-                $.ajax({
-                    type: 'GET',
-                    url: '/ideas/like/' + ideaId,
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                    },
-                    success: function (data) {
-                        // 成功時の処理
-                        // 例えば、いいねの数を更新するなど
-                        likeCountSpan.text(data.likeCount);
-                    },
-                    error: function (error) {
-                        console.log('エラーが発生しました');
-                    }
-                });
-            });
-    
-            $('.unlike-btn').click(function (e) {
-                e.preventDefault();
-                var ideaId = $(this).data('idea-id');
-                var likeCountSpan = $(this).find('.like-count'); 
-                
-                $.ajax({
-                    type: 'GET',
-                    url: '/ideas/unlike/' + ideaId,
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                    },
-                    success: function (data) {
-                        // 成功時の処理
-                        // 例えば、いいねの数を更新するなど
-                        likeCountSpan.text(data.likeCount);
-                    },
-                    error: function (error) {
-                        console.log('エラーが発生しました');
-                    }
-                });
-            });
-        });
-    </script>
+   
 @endsection
