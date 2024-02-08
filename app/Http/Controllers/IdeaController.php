@@ -21,7 +21,7 @@ class IdeaController extends Controller
 {
     public function ideaIndex(Idea $idea,Trouble $trouble)
     {
-        return view('ideas/index')->with(['ideas' => $idea -> ByLimit(),'troubles'=>$trouble->ByLimit()]);
+        return view('ideas/index')->with(['ideas' => $idea -> ByLimit(),'troubles'=>$trouble->ByLimit(),]);
     }
     
     public function ideaShow(Idea $idea,IdeaComments $comment)
@@ -82,7 +82,6 @@ class IdeaController extends Controller
         $input = $request['comment'];
         $comment->user_id=Auth::id();
         $comment->fill($input)->save();
-       
         return redirect('/ideas/'.$comment->idea_id);
     }
     

@@ -11,7 +11,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>idea_port</title>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="{{secure_asset('assets/js/footerFixed.js')}}"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{{secure_asset('assets/js/footerFixed.js')}}"></script>
+    <script type="text/javascript" src="{{secure_asset('assets/js/opendialog.js')}}"></script>
     <script src="https://kit.fontawesome.com/6f73f8946d.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <link rel="stylesheet" href="{{secure_asset('assets/css/reset.css')}}">
@@ -54,8 +56,33 @@
                         </form>
                     </ul>
                 </li>
+                <li>
+                    <i class="fa-regular fa-bell fa-lg modal-open" ></i>
+                </li>
                 
             </ul>
+        </div>
+
+        <!-- モーダル本体 -->
+        <div class="modal-container">
+        	<div class="modal-body">
+        		<!-- 閉じるボタン -->
+        		<div class="modal-close">×</div>
+        		<!-- モーダル内のコンテンツ -->
+        		<div class="modal-content">
+        			<div class="notifications">
+                        @forelse(auth()->user()->notifications()->take(5)->get() as $notification)
+                            <div class="{{ is_null($notification->read_at) ? 'un-read' : '' }}">
+                                <p>{{ $notification->data['date'] }}</p>
+                                <p>{{ $notification->data['title'] }}</p>
+                                <p>{{ $notification->data['content'] }}</p>
+                            </div>
+                        @empty
+                            <p>まだ通知はありません</p>
+                        @endforelse
+                    </div>
+        		</div>
+        	</div>
         </div>
     </header>
     
@@ -84,6 +111,13 @@
             }
         }
         
+        $(function(){
+            $(".clickable_icon").on("click", function(){
+                $(".sample_dg").dialog({
+                    title: "サンプル",
+                });
+            });
+        });
         
     </script>
 </body>
