@@ -5,14 +5,10 @@ use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\TroubleController;
 use App\Http\Controllers\IdeaLikeController;
 use App\Http\Controllers\TroubleLikeController;
+use App\Http\Controllers\GoogleLoginController;
 use Illuminate\Support\Facades\Route;
 
 
-
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -25,6 +21,10 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('/login/google', [GoogleLoginController::class, 'getGoogleAuth']);
+Route::get('/login/google/callback', [GoogleLoginController::class, 'authGoogleCallback']);
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/',[IdeaController::class,'ideaIndex']);
@@ -51,8 +51,6 @@ Route::middleware('auth')->group(function () {
     
     Route::post('/ideas/like', [IdeaLikeController::class, 'like'])->name('ideas.like');
     Route::post('/troubles/like', [TroubleLikeController::class, 'like'])->name('troubles.like');
-    
-    
     
     Route::get('/troubles/like/{trouble}',[TroubleLikeController::class,'like'])->name('trouble_like');
     Route::get('/troubles/unlike/{trouble}',[TroubleLikeController::class,'unlike'])->name('trouble_unlike');
