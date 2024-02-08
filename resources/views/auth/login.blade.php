@@ -61,11 +61,15 @@
             </x-primary-button>
         </div>
     </form>
-    <div class="form-group row mt-2 flex justify-center ">
-        <div class="col-md-8 offset-md-4">
-            <button onclick="/login/google" class="bg-blue-600 hover:bg-blue-500 text-white rounded px-4 py-2">
+
+
+    <div class="form-group row mt-2 flex justify-center items-center">
+        <i class="fa-brands fa-google"></i>
+        <div class="col-md-8 offset-md-4 ml-2">
+            <a href="/login/google" class="btn btn-secondary" role="button">
                 Google Login
-            </button>
+            </a>
         </div>
     </div>
+
 </x-guest-layout>

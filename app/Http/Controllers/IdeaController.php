@@ -13,13 +13,15 @@ use App\Models\Trouble;
 use App\Models\Tag;
 use App\Models\IdeaComments;
 use App\Models\TroubleComments;
+use App\Models\User;
 use Cloudinary;
+use Illuminate\Notifications\Notifiable;
 
 class IdeaController extends Controller
 {
     public function ideaIndex(Idea $idea,Trouble $trouble)
     {
-        return view('ideas/index')->with(['ideas' => $idea -> ByLimit(),'troubles'=>$trouble->ByLimit()]);
+        return view('ideas/index')->with(['ideas' => $idea -> ByLimit(),'troubles'=>$trouble->ByLimit(),]);
     }
     
     public function ideaShow(Idea $idea,IdeaComments $comment)
