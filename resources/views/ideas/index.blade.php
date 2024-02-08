@@ -34,7 +34,7 @@
                             <i class="fa-regular fa-circle-user fa-2x"></i>
                             <a class="user" href="/profile/{{$idea->user->id}}">{{$idea->user->name}}</a>
                             <p class="tag">#{{$idea->tag->name}}</p>
-                            <i class="fa-regular fa-heart"></i>
+                            <i class="fa-regular fa-heart fa-lg"></i>
                             <span>{{ optional($idea->idea_likes)->count() ?? 0 }}</span>
                             
                         </div>

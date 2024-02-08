@@ -13,7 +13,9 @@ use App\Models\Trouble;
 use App\Models\Tag;
 use App\Models\IdeaComments;
 use App\Models\TroubleComments;
+use App\Models\User;
 use Cloudinary;
+use Illuminate\Notifications\Notifiable;
 
 class IdeaController extends Controller
 {
@@ -80,6 +82,7 @@ class IdeaController extends Controller
         $input = $request['comment'];
         $comment->user_id=Auth::id();
         $comment->fill($input)->save();
+       
         return redirect('/ideas/'.$comment->idea_id);
     }
     

@@ -61,4 +61,15 @@
             </x-primary-button>
         </div>
     </form>
+<<<<<<< Updated upstream
+=======
+    <div class="form-group row mt-2 flex justify-center items-center">
+        <i class="fa-brands fa-google"></i>
+        <div class="col-md-8 offset-md-4 ml-2">
+            <a href="/login/google" class="btn btn-secondary" role="button">
+                Google Login
+            </a>
+        </div>
+    </div>
+>>>>>>> Stashed changes
 </x-guest-layout>
