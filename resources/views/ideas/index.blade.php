@@ -54,7 +54,7 @@
             @foreach ($troubles as $trouble)
                 <div class="trouble_post_wrapper">
                     <div class="trouble_image">
-                        @if ($idea->img_url)
+                        @if ($trouble->img_url)
                             <img src="{{ $trouble->img_url}}">
                         @else
                             <img src="https://res.cloudinary.com/dv5ph5jpi/image/upload/v1705112775/zce5gahhndl6cuoegpwp.jpg" >

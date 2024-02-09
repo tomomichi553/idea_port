@@ -150,7 +150,14 @@ body {
 .modal-content{
 	background: #fff;
 	text-align: left;
-	padding: 30px;
+}
+
+.notify read{
+    background-color: #C8D2DD;
+}
+
+.notify:hover{
+    background-color: #C8D2DD;
 }
 
 .footer{

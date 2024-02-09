@@ -52,7 +52,7 @@ class TroubleController extends Controller
     public function troubleShow(Trouble $trouble,TroubleComments $comment)
     {
         $like=TroubleLike::where('trouble_id',$trouble->id)->where('user_id',auth()->user()->id)->first();
-        $fillterdComments=$comment->where('trouble_id',$trouble->id)->get();
+        $fillterdComments=$comment->where('trouble_id',$trouble->id)->orderBy('updated_at','ASC')->paginate(15);;
         $trouble->likes_count=$trouble->trouble_likes()->count();
         return view('troubles/show')->with(['trouble'=>$trouble,'comments'=>$fillterdComments,'like'=>$like]);
     }
@@ -90,6 +90,7 @@ class TroubleController extends Controller
     public function troubleUpdate(TroubleRequest $request,Trouble $trouble)
     {
         $input=$request['trouble'];
+        //dd($request);
         if($request->file('image')){
             $image_url=Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
             $input += ['img_url'=>$image_url];

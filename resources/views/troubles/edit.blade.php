@@ -11,7 +11,7 @@
                 <div class="idea_create_logo"></div>
                 <h2>悩みの投稿</h2>
             </div>
-            <form action="/troubles/{{$trouble->id}}" method="POST">
+            <form action="/troubles/{{$trouble->id}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="idea_content">
@@ -20,7 +20,7 @@
                         <div class="idea_image">
                            <img src="{{$trouble->img_url}}" alt="No Image"/>
                         </div>
-                        <input class="img_box" accept='image/*' onchange="previewImage(this);" type="file" name="image" id="image">
+                        <input class="img_box" accept='image/*' onchange="previewImage(this);" type="file" name="image" id="image" value="{{$trouble->image}}">
                         <div class="idea_image">
                            <img id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" >
                         </div>

@@ -2,6 +2,7 @@
 
 @section('head')
     <link rel="stylesheet" href="{{secure_asset('assets/css/trouble_show.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('assets/css/paginate.css')}}">
 @endsection
 
 @section('content')
@@ -54,6 +55,9 @@
                     </form>
                 </div>
             @endforeach
+            <div class='paginate'>
+                {{ $comments->links('layouts.paginate') }}
+            </div>
         </div>
     </section>
     
