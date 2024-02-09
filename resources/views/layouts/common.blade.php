@@ -73,9 +73,7 @@
         			<div class="notifications">
                         @forelse(auth()->user()->notifications()->take(5)->get() as $notification)
                             <div class="{{ is_null($notification->read_at) ? 'un-read' : '' }}">
-                                <p>{{ $notification->data['date'] }}</p>
-                                <p>{{ $notification->data['title'] }}</p>
-                                <p>{{ $notification->data['content'] }}</p>
+                                <a href="/ideas/{{ $notification->data['idea_id'] }}"><p>{{ Carbon\Carbon::parse($notification->data['date'])->format('Y/m/d') }}：{{ $notification->data['user_name'] }}さんがあなたのアイデアにコメントしました</p></a>
                             </div>
                         @empty
                             <p>まだ通知はありません</p>

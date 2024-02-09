@@ -27,4 +27,6 @@ class IdeaComments extends Model
     {
         return $this->belongsTo(Idea::class);
     }
+    
+    
 }
