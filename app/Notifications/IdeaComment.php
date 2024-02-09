@@ -49,7 +49,7 @@ class IdeaComment extends Notification
             'idea_id' => $this->ideacomments->idea_id,
             'user_id' => $this->ideacomments->user_id,
             'user_name' => $this->ideacomments->user->name,
-            //'url' => route('infos.show', ['ideacomments' => $this->ideacomments])
+            'url' => route('idea.show', ['idea' => $this->ideacomments->idea_id])
         ];
     }
 }

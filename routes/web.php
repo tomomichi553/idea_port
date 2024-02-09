@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/ideas/comments',[IdeaController::class,'ideaComment']);
     Route::get('/ideas/{idea}/edit',[ideaController::class,'ideaEdit']);
     Route::put('/ideas/{idea}',[IdeaController::class,'ideaUpdate']);
-    Route::get('/ideas/{idea}',[IdeaController::class,'ideaShow']);
+    Route::get('/ideas/{idea}',[IdeaController::class,'ideaShow'])->name('idea.show');
     Route::delete('/ideas/{idea}',[IdeaController::class,'ideaDelete']);
     Route::delete('/ideas/comments/{comment}',[IdeaController::class,'ideaCommentDelete']);
     
@@ -45,7 +45,7 @@ Route::middleware('auth')->group(function () {
     Route::get('troubles/search',[TroubleController::class,'troubleSearch']);
     Route::get('/troubles/{trouble}/edit',[TroubleController::class,'troubleEdit']);
     Route::put('/troubles/{trouble}',[TroubleController::class,'troubleUpdate']);
-    Route::get('/troubles/{trouble}',[TroubleController::class,'troubleShow']);
+    Route::get('/troubles/{trouble}',[TroubleController::class,'troubleShow'])->name('trouble.show');
     Route::delete('/troubles/{trouble}',[TroubleController::class,'troubleDelete']);
     Route::delete('/troubles/comments/{comment}',[TroubleController::class,'troubleCommentDelete']);
     

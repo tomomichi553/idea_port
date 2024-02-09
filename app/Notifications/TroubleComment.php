@@ -2,21 +2,24 @@
 
 namespace App\Notifications;
 
+use App\Models\TroubleComments;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class InformationNotification extends Notification
+class TroubleComment extends Notification
 {
     use Queueable;
+    
+    private TroubleComments $troublecomments;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(TroubleComments $troublecomments)
     {
-        $this->information = $information;
+        $this->troublecomments = $troublecomments;
     }
 
     /**
@@ -37,13 +40,11 @@ class InformationNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'date' => $this->information->date,
-            'title' => $this->information->title,
-            'content' => $this->information->content,
-             //  通知からリンクしたいURLがあれば設定しておくと便利
-             'url' => route('infos.show', ['information' => $this->information])
+            'date' => $this->troublecomments->created_at,
+            'idea_id' => $this->troublecomments->trouble_id,
+            'user_id' => $this->troublecomments->user_id,
+            'user_name' => $this->troublecomments->user->name,
+            'url' => route('trouble.show', ['trouble' => $this->troublecomments->trouble_id])
         ];
     }
-    
-     
 }
