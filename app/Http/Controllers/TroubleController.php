@@ -13,7 +13,10 @@ use App\Models\TroubleLike;
 use App\Models\Tag;
 use App\Models\IdeaComments;
 use App\Models\TroubleComments;
+use App\Models\User;
+use App\Notifications\TroubleComment;
 use Cloudinary;
+use Illuminate\Notifications\Notifiable;
 
 class TroubleController extends Controller
 {
@@ -67,11 +70,14 @@ class TroubleController extends Controller
         return redirect('/troubles/'.$trouble->id);
     }
     
-    public function troubleComment(Request $request,TroubleComments $comment)
+    public function troubleComment(Request $request,TroubleComments $comment,User $user)
     {
         $input = $request['comment'];
         $comment->user_id=Auth::id();
         $comment->fill($input)->save();
+        $user=$comment->trouble->user;
+        //dd($user);
+        $user->notify(new TroubleComment($comment));
         return redirect('/troubles/'.$comment->trouble_id);
     }
     
