@@ -38,7 +38,9 @@
                     </div>
                 </div>
             @endforeach
-           
+           <div class='paginate'>
+                {{ $ideas->links('layouts.paginate') }}
+            </div>
         </div>
         
     </section>
@@ -74,7 +76,9 @@
                     </div>
                 </div>
             @endforeach
-            
+            <div class='paginate'>
+                {{ $troubles->links('layouts.paginate') }}
+            </div>
         </div>
     </section>
         

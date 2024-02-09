@@ -29,7 +29,7 @@ class IdeaController extends Controller
     public function ideaShow(Idea $idea,IdeaComments $comment)
     {   
         $like=IdeaLike::where('idea_id',$idea->id)->where('user_id',auth()->user()->id)->first();
-        $fillterdComments=$comment->where('idea_id',$idea->id)->get();
+        $fillterdComments=$comment->where('idea_id',$idea->id)->orderBy('updated_at','ASC')->paginate(15);
         $idea->likes_count=$idea->idea_likes()->count();
         return view('ideas/show')->with(['idea'=>$idea, 'comments'=> $fillterdComments,'like'=>$like]);
     }
@@ -100,6 +100,7 @@ class IdeaController extends Controller
     public function ideaUpdate(IdeaRequest $request,Idea $idea)
     {
         $input = $request['idea'];
+        //dd($request);
         if($request->file('image')){
             $image_url=Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
             $input += ['img_url'=>$image_url];

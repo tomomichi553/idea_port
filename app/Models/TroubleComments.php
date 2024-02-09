@@ -15,7 +15,7 @@ class TroubleComments extends Model
     
     protected $fillable = [
         'comment',
-        'trouble_id'
+        'trouble_id',
     ];
     
     public function user():BelongsTo

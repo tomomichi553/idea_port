@@ -71,9 +71,10 @@
         		<!-- モーダル内のコンテンツ -->
         		<div class="modal-content">
         			<div class="notifications">
+        			    <h1>通知一覧</h1>
                         @forelse(auth()->user()->notifications()->take(5)->get() as $notification)
-                            <div class="{{ is_null($notification->read_at) ? 'un-read' : '' }}">
-                                <a href="{{ $notification->data['url'] }}"><p>{{ Carbon\Carbon::parse($notification->data['date'])->format('Y/m/d') }}：{{ $notification->data['user_name'] }}さんがあなたのアイデアにコメントしました</p></a>
+                            <div class="notify {{ is_null($notification->read_at) ? 'un-read' : 'read' }}">
+                                <a href="{{ $notification->data['url'] }}"><p>{{ Carbon\Carbon::parse($notification->data['date'])->format('Y/m/d') }}：{{ $notification->data['user_name'] }}さんがあなたのポストにコメントしました</p></a>
                             </div>
                         @empty
                             <p>まだ通知はありません</p>

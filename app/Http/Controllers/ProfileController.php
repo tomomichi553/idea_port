@@ -78,12 +78,14 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
     
-    public function post(User $user,Idea $idea,Trouble $trouble)
+    public function post(User $user,Idea $idea,Trouble $trouble,Request $request)
     {
          //$userId=Auth::id();
          $userId=$user->id;
-         $ideas=$idea->where('user_id',$userId)->latest()->paginate(5);
-         $troubles=$trouble->where('user_id',$userId)->latest()->paginate(5);
+         $ideas=$idea->where('user_id',$userId)->latest()->paginate(5,["*"],'idea-page')
+         ->appends(["idea-page" => $request->input('idea-page')]);
+         $troubles=$trouble->where('user_id',$userId)->latest()->paginate(5,["*"],'trouble-page')
+         ->appends(["trouble-page" => $request->input('trouble-page')]);
          return view('profile/index')->with(['ideas' => $ideas ,'troubles'=>$troubles]);
     }
     
@@ -92,16 +94,18 @@ class ProfileController extends Controller
         return view('profile/show')->with(['user'=>$user]);
     }
     
-    public function like(Idea $idea,Trouble $trouble)
+    public function like(Idea $idea,Trouble $trouble,Request $request)
     {
         //$ideas=$idealike->where('user_id',Auth::id());
         $ideas = IdeaLike::where('user_id', Auth::id())
             ->with('idea.tag','idea.user')
-            ->get();
+            ->orderBy('updated_at','DESC')->paginate(5,["*"],'idea-page')
+            ->appends(["idea-page" => $request->input('idea-page')]);
         //dd($ideas);
         $troubles=TroubleLike::where('user_id', Auth::id())
             ->with('trouble.tag','trouble.user')
-            ->get();
+            ->orderBy('updated_at','DESC')->paginate(5,["*"],'trouble-page')
+            ->appends(["trouble-page" => $request->input('trouble-page')]);
         //dd($troubles);
         return view('profile/like')->with(['ideas'=>$ideas,'troubles'=>$troubles]);
     }
