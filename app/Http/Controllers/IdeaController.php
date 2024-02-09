@@ -14,6 +14,7 @@ use App\Models\Tag;
 use App\Models\IdeaComments;
 use App\Models\TroubleComments;
 use App\Models\User;
+use App\Notifications\IdeaComment;
 use Cloudinary;
 use Illuminate\Notifications\Notifiable;
 
@@ -21,6 +22,7 @@ class IdeaController extends Controller
 {
     public function ideaIndex(Idea $idea,Trouble $trouble)
     {
+        
         return view('ideas/index')->with(['ideas' => $idea -> ByLimit(),'troubles'=>$trouble->ByLimit(),]);
     }
     
@@ -77,11 +79,15 @@ class IdeaController extends Controller
         return redirect('/ideas/'.$idea->id);
     }
     
-    public function ideaComment(Request $request,IdeaComments $comment)
+    public function ideaComment(Request $request,IdeaComments $comment,User $user)
     {
         $input = $request['comment'];
         $comment->user_id=Auth::id();
         $comment->fill($input)->save();
+        //dd($comment);
+        $user=$comment->idea->user;
+        //dd($user);
+        $user->notify(new IdeaComment($comment));
         return redirect('/ideas/'.$comment->idea_id);
     }
     
