@@ -15,6 +15,6 @@ class TroubleSeeder extends Seeder
      */
     public function run(): void
     {
-        Trouble::factory(5)->create();
+        //Trouble::factory(5)->create();
     }
 }

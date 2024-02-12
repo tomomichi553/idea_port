@@ -15,9 +15,9 @@ class IdeaSeeder extends Seeder
      */
     public function run(): void
     {
-        Idea::factory(10)->create();
+        //Idea::factory(10)->create();
          /*DB::table('ideas')->insert([
-                //'user_id' => '1',
+                'user_id' => '1',
                 'idea_title'=> 'これがアイデアのタイトル2です',
                 'idea_background'=> 'ここからがアイデアの背景2です',
                 'idea_goal'=>'ここからがアイデアの目標2です',
